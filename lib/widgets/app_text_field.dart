@@ -74,11 +74,7 @@ class _AppTextBoxState extends State<AppTextBox> {
     }
 
     return Container(
-      // decoration: BoxDecoration(
-      // border: Border.all(color: widget.enabled ? Colors.black26 : Colors.black12),
-      // borderRadius: const BorderRadius.all(Radius.circular(8)),
-      // ),
-        margin: EdgeInsets.symmetric(vertical: 8),
+        margin: EdgeInsets.symmetric(vertical: 7),
         child: TextField(
           enabled: widget.enabled,
           obscureText: obscureText ? b : false,
@@ -86,7 +82,6 @@ class _AppTextBoxState extends State<AppTextBox> {
           controller: textFieldControl.controller,
           focusNode: textFieldControl.focusNode,
           keyboardType: keyboardType,
-
           inputFormatters: keyboardType != TextInputType.number
               ? null
               : <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
@@ -95,37 +90,29 @@ class _AppTextBoxState extends State<AppTextBox> {
           textInputAction: textInputAction,
           onChanged: widget.onChanged,
           decoration: InputDecoration(
-            // border: InputBorder.none,
-            // disabledBorder: InputBorder.none,
-            // enabledBorder: InputBorder.none,
-            // errorBorder: InputBorder.none,
-            // focusedBorder: InputBorder.none,
-            // focusedErrorBorder: InputBorder.none,
-
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
             disabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
-                borderSide: BorderSide(color: Colors.black12)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderSide: BorderSide(color: Colors.grey)),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
             errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
-                borderSide: BorderSide(color: primaryColor)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderSide: BorderSide(color: Colors.grey)),
             focusedErrorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(7)),
-                borderSide: BorderSide(color: primaryColor)),
-
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                borderSide: BorderSide(color: Colors.grey)),
             hintText: hintText,
             hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
             prefixIcon: widget.prefixIcon,
             suffixIcon: suffixIcon,
-            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
           ),
         ));
   }
