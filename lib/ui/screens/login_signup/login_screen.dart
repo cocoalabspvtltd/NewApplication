@@ -47,7 +47,13 @@ class _LogInScreenState extends State<LogInScreen> {
               //     ),
               //   ),
               // ),
-              Align(
+              signUp ? Align(
+                alignment: Alignment.center,
+                child: Text(
+                  "Register Now",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                ),
+              ) : Align(
                 alignment: Alignment.center,
                 child: Text(
                   "Welcome  back",
