@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:new_application/ui/screens/login_signup/login_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: Theme.of(context).copyWith(
         primaryColor: primaryColor,
@@ -32,7 +33,11 @@ class MyApp extends StatelessWidget {
         canvasColor: Color(0xfff2f6fa),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LogInScreen(),
+      routes: {
+        '/': (BuildContext context) => LogInScreen(),
+        //'/home': (BuildContext context) => MyHomePage(),
+      },
+      initialRoute: '/',
     );
   }
 }

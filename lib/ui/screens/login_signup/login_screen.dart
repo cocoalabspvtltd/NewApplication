@@ -36,17 +36,6 @@ class _LogInScreenState extends State<LogInScreen> {
                   height: 170,
                 ),
               ),
-              // Center(
-              //   child: Container(
-              //     height: 170,
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //         image: AssetImage("assets/images/logo.png"),
-              //         fit: BoxFit.fitHeight,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               signUp ? Align(
                 alignment: Alignment.center,
                 child: Text(
