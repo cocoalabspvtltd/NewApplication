@@ -33,6 +33,21 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: SizedBox(
+        width: 400,
+        height: 40,
+        child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Fill in any of these if you are a user type "),
+            SizedBox(width: 5,),
+            Text("or",style: TextStyle(fontSize: 18),),
+            SizedBox(width: 7,),
+            TextButton(onPressed: (){}, child: Text("Skip >",
+              style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold,fontSize: 20),),)
+          ],
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -126,7 +141,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                 ),
                 _restaurantowner(),
                 SizedBox(
-                  height: 20,
+                  height: 40,
                 ),
               ],
             ),
