@@ -16,21 +16,10 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   FormatAndValidate formatAndValidate = FormatAndValidate();
   TextFieldControl _name = TextFieldControl();
-  TextFieldControl _nickname = TextFieldControl();
-  TextFieldControl _dob = TextFieldControl();
-  List list=[
-    {'image': 'assets/icons/ic_male.png',
-    'name':'Male'},
-    {'image': 'assets/icons/ic_female.png',
-      'name':'Female'},
-    {'image': 'assets/icons/ic_others.png',
-      'name':'Others'}
-  ];
-  String? dropdownvalue;
-  // var gender = ['Select Gender','Male', 'Female', 'Others'];
-  // var gendericons=[Icon(Icons.person), Image.asset("assets/icons/ic_male.png"), Image.asset("assets/icons/ic_female.png"),
-  //   Image.asset("assets/icons/ic_others.png"),
-  // ];
+  TextFieldControl _emailid = TextFieldControl();
+  TextFieldControl _mobileno = TextFieldControl();
+  TextFieldControl _password = TextFieldControl();
+  TextFieldControl _confirmpassword = TextFieldControl();
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -56,79 +45,55 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
             ),
             Text(
-              "Nick Name",
+              "Email",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
             AppTextBox(
-              textFieldControl: _nickname,
+              textFieldControl: _emailid,
               prefixIcon: Icon(
-                Icons.person,
+                Icons.mail_outline,
                 color: primaryColor,
               ),
-              hintText: 'Enter nick name',
-              keyboardType: TextInputType.text,
+              hintText: 'Enter mail address',
+              keyboardType: TextInputType.emailAddress,
             ),
             Text(
-              "Gender",
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
-            Container(
-              height: 48,
-              width: 330,
-              margin: EdgeInsets.symmetric(vertical: 7),
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-              decoration: BoxDecoration(
-                color:Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.grey,),
-              ),
-              child: DropdownButton(
-                underline: Container(),
-                value: dropdownvalue,
-                hint: Row(
-                  children: [
-                    Icon(Icons.person,color: primaryColor,),
-                    SizedBox(width: 8,),
-                    Text("Select Gender",style: TextStyle(fontSize: 14),),
-                  ],
-                ),
-                icon: Padding(
-                  padding: const EdgeInsets.only(left: 160),
-                  child: Icon(Icons.arrow_drop_down_rounded,color: primaryColor,),
-                ),
-                onChanged: (newValue) {
-                  setState(() {
-                      dropdownvalue = newValue.toString();
-                  });
-                },
-                items: list.map(( gender) {
-                  return DropdownMenuItem(
-                    value: gender['name'],
-                    child: Row(
-                      children: [
-                        Image.asset(gender['image'],width: 24,),
-                        SizedBox(width: 8,),
-                        Text(gender['name'])
-                      ],
-                    ),
-                  );
-                }).toList(),
-              ),),
-            Text(
-              "DOB",
+              "Mobile Number",
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
             AppTextBox(
-              textFieldControl: _dob,
+              textFieldControl: _mobileno,
               prefixIcon: Icon(
-                Icons.email_outlined,
+                Icons.phone_android_outlined,
                 color: primaryColor,
               ),
-              hintText: 'DD/MM/YY',
+              hintText: 'Enter mobile number',
               keyboardType: TextInputType.number,
             ),
+            Text(
+              "Password",
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            AppTextBox(
+              textFieldControl: _password,
+              prefixIcon: Icon(Icons.lock_outlined, color: primaryColor),
+              hintText: 'Password',
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+            ),
+            Text(
+              "Confirm password",
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            AppTextBox(
+              textFieldControl: _confirmpassword,
+              prefixIcon: Icon(Icons.lock_outlined, color: primaryColor),
+              hintText: 'Confirm password',
+              obscureText: true,
+              textInputAction: TextInputAction.done,
+            ),
             SizedBox(
-              height: 15,
+              height: 7,
             ),
             Center(
               child: SizedBox(
@@ -142,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: primaryColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(12.0),
+                      borderRadius:  BorderRadius.circular(12.0),
                     ),
                   ),
                   child: Text("Continue"),

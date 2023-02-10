@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,6 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   TextFieldControl _restaurantname = TextFieldControl();
   TextFieldControl _restaurantno = TextFieldControl();
   TextFieldControl _restaurantaddress = TextFieldControl();
-
   bool signUp = false;
   @override
   Widget build(BuildContext context) {
@@ -43,11 +41,12 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    "assets/images/logo.png",
-                    height: 170,
-                  ),
+                    alignment: Alignment.center,
+                    child: SizedBox(
+                      height: 140,
+                      child: Image.asset(
+                        "assets/images/logo.png",
+                      ),)
                 ),
                 Align(
                         alignment: Alignment.center,
@@ -107,7 +106,6 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     ),
                   ],
                 ),
-                // signUp ? SignUpScreen() : _logInScreen(),
                 SizedBox(
                   height: 15,
                 ),
@@ -126,7 +124,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                 SizedBox(
                   height: 10,
                 ),
-                _restaurantowner()
+                _restaurantowner(),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
@@ -143,7 +144,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
         shadowColor: primaryColor,
         elevation: 8,
         borderRadius: BorderRadius.circular(10),
-        baseColor: Colors.white,
+        baseColor: Colors.grey[200],
         leading: Icon(
           CupertinoIcons.person_alt_circle,
           color: primaryColor,
@@ -192,8 +193,8 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               },
               child: _licenseimage != null
                   ? Container(
-                      height: 60.00,
-                      width: 200,
+                      height: 80.00,
+                      width: 300,
                       margin: EdgeInsets.only(
                         top: 10.00,
                       ),
@@ -217,13 +218,18 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           color: Colors.grey,
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 230),
-                        child: Icon(
-                          Icons.file_present_rounded,
-                          size: 20,
-                          color: primaryColor,
-                        ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 10,),
+                          Text("Upload image",style: TextStyle(color: Colors.grey,),),
+                          Spacer(),
+                          Icon(
+                            Icons.file_present_rounded,
+                            size: 20,
+                            color: primaryColor,
+                          ),
+                          SizedBox(width: 10,),
+                        ],
                       ),
                     ),
             ),
@@ -260,8 +266,8 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               },
               child: _permitimage != null
                   ? Container(
-                height: 60.00,
-                width: 200,
+                height: 80.00,
+                width: 300,
                 margin: EdgeInsets.only(
                   top: 10.00,
                 ),
@@ -285,13 +291,18 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     color: Colors.grey,
                   ),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 230),
-                  child: Icon(
-                    Icons.file_present_rounded,
-                    size: 20,
-                    color: primaryColor,
-                  ),
+                child: Row(
+                  children: [
+                    SizedBox(width: 10,),
+                    Text("Upload image",style: TextStyle(color: Colors.grey,),),
+                    Spacer(),
+                    Icon(
+                      Icons.file_present_rounded,
+                      size: 20,
+                      color: primaryColor,
+                    ),
+                    SizedBox(width: 10,),
+                  ],
                 ),
               ),
             ),
@@ -310,7 +321,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
         shadowColor: primaryColor,
         elevation: 8,
         borderRadius: BorderRadius.circular(10),
-        baseColor: Colors.white,
+        baseColor: Colors.grey[200],
         leading: Icon(
           CupertinoIcons.person_alt_circle,
           color: primaryColor,
@@ -389,8 +400,8 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
         contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
         shadowColor: primaryColor,
         elevation: 8,
-        borderRadius: BorderRadius.circular(10),
-        baseColor: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        baseColor: Colors.grey[200],
         leading: Icon(
           CupertinoIcons.person_alt_circle,
           color: primaryColor,
