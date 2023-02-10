@@ -31,22 +31,12 @@ class _LogInScreenState extends State<LogInScreen> {
             children: [
               Align(
                 alignment: Alignment.center,
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  height: 170,
-                ),
+                child: SizedBox(
+                  height: 140,
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                    ),)
               ),
-              // Center(
-              //   child: Container(
-              //     height: 170,
-              //     decoration: BoxDecoration(
-              //       image: DecorationImage(
-              //         image: AssetImage("assets/images/logo.png"),
-              //         fit: BoxFit.fitHeight,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               signUp ? Align(
                 alignment: Alignment.center,
                 child: Text(
@@ -111,9 +101,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 ],
               ),
               signUp ? SignUpScreen() : _logInScreen(),
-              SizedBox(
-                height: 4,
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -146,55 +133,62 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 5,
-              ),
+              SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: CircleBorder(
-                        side: BorderSide(
-                          color: Colors.grey,
+                  SizedBox(
+                    height: 30,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
-                    ),
-                    onPressed: () {},
-                    child: Image.asset(
-                      'assets/icons/ic_facebook.png',
-                      width: 16,
+                      onPressed: () {},
+                      child: Image.asset(
+                        'assets/icons/ic_facebook.png',
+                        width: 16,
+                      ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: CircleBorder(
-                        side: BorderSide(
-                          color: Colors.grey,
+                  SizedBox(
+                    height: 30,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
-                    ),
-                    onPressed: () {},
-                    child: Image.asset(
-                      'assets/icons/ic_google.png',
-                      width: 24,
+                      onPressed: () {},
+                      child: Image.asset(
+                        'assets/icons/ic_google.png',
+                        width: 20,
+                      ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      shape: CircleBorder(
-                        side: BorderSide(
-                          color: Colors.grey,
+                  SizedBox(
+                    height: 30,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.white,
+                        shape: CircleBorder(
+                          side: BorderSide(
+                            color: Colors.grey,
+                          ),
                         ),
                       ),
-                    ),
-                    onPressed: () {},
-                    child: Image.asset(
-                      'assets/icons/ic_linkedIn.png',
-                      width: 24,
+                      onPressed: () {},
+                      child: Image.asset(
+                        'assets/icons/ic_linkedIn.png',
+                        width: 20,
+                      ),
                     ),
                   ),
                 ],
