@@ -74,7 +74,7 @@ class _AppTextBoxState extends State<AppTextBox> {
     }
 
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 5),
+        margin: EdgeInsets.symmetric(vertical: 6),
         child: TextField(
           enabled: widget.enabled,
           obscureText: obscureText ? b : false,

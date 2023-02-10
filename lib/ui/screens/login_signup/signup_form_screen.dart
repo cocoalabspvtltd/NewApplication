@@ -16,6 +16,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   FormatAndValidate formatAndValidate = FormatAndValidate();
   TextFieldControl _name = TextFieldControl();
+  TextFieldControl _nickname = TextFieldControl();
   TextFieldControl _emailid = TextFieldControl();
   TextFieldControl _mobileno = TextFieldControl();
   TextFieldControl _password = TextFieldControl();
@@ -29,10 +30,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 8,),
-            Text(
-              "User Name",
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
             SizedBox(
               child: AppTextBox(
                 textFieldControl: _name,
@@ -44,9 +41,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 keyboardType: TextInputType.text,
               ),
             ),
-            Text(
-              "Email",
-              style: TextStyle(fontWeight: FontWeight.w500),
+            SizedBox(
+              child: AppTextBox(
+                textFieldControl: _nickname,
+                prefixIcon: Icon(
+                  Icons.person,
+                  color: primaryColor,
+                ),
+                hintText: 'Enter nick name',
+                keyboardType: TextInputType.text,
+              ),
             ),
             AppTextBox(
               textFieldControl: _emailid,
@@ -57,10 +61,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               hintText: 'Enter mail address',
               keyboardType: TextInputType.emailAddress,
             ),
-            Text(
-              "Mobile Number",
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
             AppTextBox(
               textFieldControl: _mobileno,
               prefixIcon: Icon(
@@ -70,20 +70,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
               hintText: 'Enter mobile number',
               keyboardType: TextInputType.number,
             ),
-            Text(
-              "Password",
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
             AppTextBox(
               textFieldControl: _password,
               prefixIcon: Icon(Icons.lock_outlined, color: primaryColor),
               hintText: 'Password',
               obscureText: true,
               textInputAction: TextInputAction.done,
-            ),
-            Text(
-              "Confirm password",
-              style: TextStyle(fontWeight: FontWeight.w500),
             ),
             AppTextBox(
               textFieldControl: _confirmpassword,
