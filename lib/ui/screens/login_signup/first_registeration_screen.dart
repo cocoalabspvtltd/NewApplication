@@ -307,6 +307,23 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               ),
             ),
           ),
+          SizedBox(height: 6,),
+          SizedBox(
+            width: 100,
+            height: 35,
+            child: ElevatedButton(
+                onPressed: () {
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: primaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Text(
+                  "Save",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
+          ),
           SizedBox(height: 15,)
         ],
       ),
@@ -386,6 +403,23 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               hintText: 'Enter hotel number',
               keyboardType: TextInputType.number,
             ),
+          ),
+          SizedBox(height: 6,),
+          SizedBox(
+            width: 100,
+            height: 35,
+            child: ElevatedButton(
+                onPressed: () {
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: primaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Text(
+                  "Save",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
           ),
           SizedBox(height: 15,)
         ],
@@ -535,6 +569,23 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                 )
               ],
             ),
+          ),
+          SizedBox(height: 6,),
+          SizedBox(
+            width: 100,
+            height: 35,
+            child: ElevatedButton(
+                onPressed: () {
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: primaryColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Text(
+                  "Save",
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                )),
           ),
           SizedBox(height: 15,)
         ],
