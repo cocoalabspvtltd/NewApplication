@@ -1,9 +1,15 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:new_application/main.dart';
 import 'package:new_application/ui/screens/login_signup/signup_form_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/widgets/app_text_field.dart';
+
+import 'first_registeration_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({
@@ -15,6 +21,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  //static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
   bool signUp = false;
   FormatAndValidate formatAndValidate = FormatAndValidate();
 
@@ -166,7 +174,8 @@ class _LogInScreenState extends State<LogInScreen> {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {print("object");
+                        signup(context); },
                       child: Image.asset(
                         'assets/icons/ic_google.png',
                         width: 20,
@@ -198,7 +207,33 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       ),
     );
+  }// function to implement the google signin
+
+// creating firebase instance
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<void> signup(BuildContext context) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
+
+      // Getting users credential
+      UserCredential result = await auth.signInWithCredential(authCredential);
+      User? user = result.user;
+
+      if (result != null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => RegisterationScreen()));
+      } // if result not null we simply call the MaterialpageRoute,
+      // for go to the HomePage screen
+    }
   }
+
 
   Widget _logInScreen() {
     return Column(
@@ -266,9 +301,19 @@ class _LogInScreenState extends State<LogInScreen> {
                   borderRadius: new BorderRadius.circular(12.0),
                 ),
               ),
-              child: Text(
-                "Login Now",
-                style: TextStyle(fontSize: 16),
+              child: GestureDetector(onTap: () async {
+                await MyApp.fiam.triggerEvent('awesome_event');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Triggering event: awesome_event'),
+                  ),
+                );
+
+              },
+                child: Text(
+                  "Login Now",
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
             ),
           ),
