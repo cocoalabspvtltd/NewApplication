@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       routes: {
-        '/': (BuildContext context) => LogInScreen(),
+        '/': (BuildContext context) => const LogInScreen(),
         //'/home': (BuildContext context) => MyHomePage(),
       },
       initialRoute: '/',
