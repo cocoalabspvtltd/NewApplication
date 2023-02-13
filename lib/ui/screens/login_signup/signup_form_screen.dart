@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 8,),
+            SizedBox(height: screenHeight * 0.005,),
             SizedBox(
               child: AppTextBox(
                 textFieldControl: _name,
@@ -89,12 +89,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             Center(
               child: SizedBox(
-                width: 320,
-                height: 45,
+                width: screenWidth * 0.9,
+                height: screenHeight * 0.06,
                 child: ElevatedButton(
                   onPressed: () {
-                    Get.to(() => RegisterationScreen(
-                    ));
+                    _validate();
                   },
                   style: ElevatedButton.styleFrom(
                     primary: primaryColor,
@@ -110,5 +109,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
     );
+  }
+
+  _validate() async {
+    var name = _name.controller.text;
+    var nickname=_nickname.controller.text;
+    var email = _emailid.controller.text;
+    var phone = _mobileno.controller.text;
+    var password = _password.controller.text;
+    var confirmPassword = _confirmpassword.controller.text;
+    if (formatAndValidate.validateName(name) != null) {
+      return toastMessage(formatAndValidate.validateName(name));
+    } else if (formatAndValidate.validateName(nickname) != null) {
+      return toastMessage(formatAndValidate.validateName(nickname));
+    } else if (formatAndValidate.validateEmailID(email) != null) {
+      return toastMessage(formatAndValidate.validateEmailID(email));
+    } else if (formatAndValidate.validatePhoneNo(phone) != null) {
+      return toastMessage(formatAndValidate.validatePhoneNo(phone));
+    } else if (password == "" || password.length < 6) {
+      return toastMessage("Password length must be more than 6");
+    } else if (password != confirmPassword) {
+      return toastMessage("Password doesn't match");
+    }
+    return await Get.to(() => const RegisterationScreen()) ;
   }
 }
