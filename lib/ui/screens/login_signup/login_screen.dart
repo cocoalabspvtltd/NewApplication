@@ -1,8 +1,15 @@
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:new_application/main.dart';
 import 'package:new_application/ui/screens/login_signup/signup_form_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/widgets/app_text_field.dart';
+
+import 'first_registeration_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({
@@ -14,6 +21,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  //static FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+
   bool signUp = false;
   FormatAndValidate formatAndValidate = FormatAndValidate();
 
@@ -31,7 +40,7 @@ class _LogInScreenState extends State<LogInScreen> {
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  height: screenHeight * 0.2,
+                  height: 140,
                     child: Image.asset(
                       "assets/images/logo.png",
                     ),)
@@ -50,14 +59,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.03,
+                height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: screenWidth * 0.3,
-                    height: screenHeight * 0.05,
+                    width: 100,
+                    height: 35,
                     child: ElevatedButton(
                         onPressed: () {
                           signUp = false;
@@ -75,11 +84,11 @@ class _LogInScreenState extends State<LogInScreen> {
                         )),
                   ),
                   SizedBox(
-                    width: screenWidth * 0.1,
+                    width: 20,
                   ),
                   SizedBox(
-                    width: screenWidth * 0.3,
-                    height: screenHeight * 0.05,
+                    width: 100,
+                    height: 35,
                     child: ElevatedButton(
                       onPressed: () {
                         signUp = true;
@@ -99,20 +108,19 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.01,),
               signUp ? SignUpScreen() : _logInScreen(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: screenWidth * 0.20,
+                    width: 80,
                     child: Divider(
                       color: Colors.grey,
                       thickness: 0.6,
                     ),
                   ),
                   SizedBox(
-                    width: screenWidth * 0.02,
+                    width: 7,
                   ),
                   Text(
                     "or",
@@ -122,10 +130,10 @@ class _LogInScreenState extends State<LogInScreen> {
                         fontSize: 20),
                   ),
                   SizedBox(
-                    width: screenWidth * 0.02,
+                    width: 7,
                   ),
                   SizedBox(
-                    width: screenWidth * 0.2,
+                    width: 80,
                     child: Divider(
                       color: Colors.grey,
                       thickness: 0.6,
@@ -133,7 +141,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: screenHeight * 0.001),
+              SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -166,7 +174,8 @@ class _LogInScreenState extends State<LogInScreen> {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {print("object");
+                        signup(context); },
                       child: Image.asset(
                         'assets/icons/ic_google.png',
                         width: 20,
@@ -198,14 +207,40 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       ),
     );
+  }// function to implement the google signin
+
+// creating firebase instance
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  Future<void> signup(BuildContext context) async {
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
+
+      // Getting users credential
+      UserCredential result = await auth.signInWithCredential(authCredential);
+      User? user = result.user;
+
+      if (result != null) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => RegisterationScreen()));
+      } // if result not null we simply call the MaterialpageRoute,
+      // for go to the HomePage screen
+    }
   }
+
 
   Widget _logInScreen() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         SizedBox(
-          height: screenHeight * 0.02,
+          height: 15,
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -259,35 +294,31 @@ class _LogInScreenState extends State<LogInScreen> {
             width: 310,
             height: 45,
             child: ElevatedButton(
-              onPressed: () {
-                _validate();
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 primary: primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(12.0),
                 ),
               ),
-              child: Text(
-                "Login Now",
-                style: TextStyle(fontSize: 16),
+              child: GestureDetector(onTap: () async {
+                await MyApp.fiam.triggerEvent('awesome_event');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Triggering event: awesome_event'),
+                  ),
+                );
+
+              },
+                child: Text(
+                  "Login Now",
+                  style: TextStyle(fontSize: 16),
+                ),
               ),
             ),
           ),
         ),
       ],
     );
-  }
-
-  _validate() async {
-    var email = _email.controller.text;
-    var password = _password.controller.text;
-
-    if (formatAndValidate.validateEmailID(email) != null) {
-      return toastMessage(formatAndValidate.validateEmailID(email));
-    } else if (password == "" || password.length < 6) {
-      return toastMessage("Password length must be more than 6");
-    }
-    return  toastMessage("Login Successfully") ;
   }
 }
