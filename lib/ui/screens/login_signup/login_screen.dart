@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:new_application/ui/screens/login_signup/signup_form_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
@@ -32,7 +31,7 @@ class _LogInScreenState extends State<LogInScreen> {
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
-                  height: 140,
+                  height: screenHeight * 0.2,
                     child: Image.asset(
                       "assets/images/logo.png",
                     ),)
@@ -51,14 +50,14 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               SizedBox(
-                height: 15,
+                height: MediaQuery.of(context).size.height * 0.03,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 100,
-                    height: 35,
+                    width: screenWidth * 0.3,
+                    height: screenHeight * 0.05,
                     child: ElevatedButton(
                         onPressed: () {
                           signUp = false;
@@ -76,11 +75,11 @@ class _LogInScreenState extends State<LogInScreen> {
                         )),
                   ),
                   SizedBox(
-                    width: 20,
+                    width: screenWidth * 0.1,
                   ),
                   SizedBox(
-                    width: 100,
-                    height: 35,
+                    width: screenWidth * 0.3,
+                    height: screenHeight * 0.05,
                     child: ElevatedButton(
                       onPressed: () {
                         signUp = true;
@@ -100,19 +99,20 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
+              SizedBox(height: screenHeight * 0.01,),
               signUp ? SignUpScreen() : _logInScreen(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: 80,
+                    width: screenWidth * 0.20,
                     child: Divider(
                       color: Colors.grey,
                       thickness: 0.6,
                     ),
                   ),
                   SizedBox(
-                    width: 7,
+                    width: screenWidth * 0.02,
                   ),
                   Text(
                     "or",
@@ -122,10 +122,10 @@ class _LogInScreenState extends State<LogInScreen> {
                         fontSize: 20),
                   ),
                   SizedBox(
-                    width: 7,
+                    width: screenWidth * 0.02,
                   ),
                   SizedBox(
-                    width: 80,
+                    width: screenWidth * 0.2,
                     child: Divider(
                       color: Colors.grey,
                       thickness: 0.6,
@@ -133,7 +133,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 5),
+              SizedBox(height: screenHeight * 0.001),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -205,7 +205,7 @@ class _LogInScreenState extends State<LogInScreen> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         SizedBox(
-          height: 15,
+          height: screenHeight * 0.02,
         ),
         Padding(
           padding: EdgeInsets.only(
@@ -259,7 +259,9 @@ class _LogInScreenState extends State<LogInScreen> {
             width: 310,
             height: 45,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _validate();
+              },
               style: ElevatedButton.styleFrom(
                 primary: primaryColor,
                 shape: RoundedRectangleBorder(
@@ -275,5 +277,17 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       ],
     );
+  }
+
+  _validate() async {
+    var email = _email.controller.text;
+    var password = _password.controller.text;
+
+    if (formatAndValidate.validateEmailID(email) != null) {
+      return toastMessage(formatAndValidate.validateEmailID(email));
+    } else if (password == "" || password.length < 6) {
+      return toastMessage("Password length must be more than 6");
+    }
+    return  toastMessage("Login Successfully") ;
   }
 }
