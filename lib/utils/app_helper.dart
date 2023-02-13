@@ -5,40 +5,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 
-MaterialColor primaryColor = MaterialColor(int.parse("0xff00095B"), {
-  // 50: Color(0xffceffd9),
-  // 100: Color(0xff8efaa6),
-  // 200: Color(0xff5cfa80),
-  // 300: Color(0xff23fd55),
-  // 400: Color(0xff00ff41),
-  // 500: Color(0xff00e223),
-  // 600: Color(0xff00bf44),
-  // 700: Color(0xff008719),
-  // 800: Color(0xff016323),
-  // 900: Color(0xff003d0e),
+MaterialColor primaryColor = MaterialColor(int.parse("0xff00095B"), const {
+
 });
 
-MaterialColor secondaryColor = MaterialColor(int.parse("0xffF6C220"), {
-  // 50: Color(0xffffffff),
-  // 100: Color(0xffffffff),
-  // 200: Color(0xffffffff),
-  // 300: Color(0xffffffff),
-  // 400: Color(0xffffffff),
-  // 500: Color(0xffffffff),
-  // 600: Color(0xffffffff),
-  // 700: Color(0xffffffff),
-  // 800: Color(0xffffffff),
-  // 900: Color(0xffffffff),
-});
+MaterialColor secondaryColor = MaterialColor(int.parse("0xffF6C220"), const {});
 
-
-double screenWidth = 0.0;
-double screenHeight = 0.0;
-
+var screenWidth = 0.0;
+var screenHeight = 0.0;
 String rupeeSymbol = '₹';
 
 void setScreenDimensions(BuildContext context) {
-  screenHeight = MediaQuery.of(context).size.height;
+
+  screenHeight=MediaQuery.of(context).size.height;
   screenWidth = MediaQuery.of(context).size.width;
 }
 
@@ -54,8 +33,6 @@ String parseformatDate(var _dt, [String? _format]) {
 
   try {
     return dateformat.format(apidatedateFormat.parse(_dt));
-
-    // DateFormat(_format).format(DateTime.parse(_dt));
   } catch (e) {
     try {
       return DateFormat(_format).format(DateTime.parse(_dt));
