@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:new_application/ui/screens/home.dart';
 import 'package:new_application/ui/screens/login_signup/login_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/widgets/app_text_field.dart';
@@ -43,7 +44,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
             SizedBox(width: 5,),
             Text("or",style: TextStyle(fontSize: 18),),
             SizedBox(width: 7,),
-            TextButton(onPressed: (){}, child: Text("Skip >",
+            TextButton(onPressed: (){
+              Get.to(() => const HomeScreen());
+            }, child: Text("Skip >",
               style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold,fontSize: 20),),)
           ],
         ),
