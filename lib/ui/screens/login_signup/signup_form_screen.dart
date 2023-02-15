@@ -1,10 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:new_application/Auth_Bloc/auth_bloc.dart';
+import 'package:new_application/repository/repository_register.dart';
 import 'package:new_application/ui/screens/login_signup/first_registeration_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/widgets/app_text_field.dart';
+
+import '../../../Auth_Bloc/auth_event.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -21,15 +26,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextFieldControl _mobileno = TextFieldControl();
   TextFieldControl _password = TextFieldControl();
   TextFieldControl _confirmpassword = TextFieldControl();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(left: 18,right: 18),
+        padding: const EdgeInsets.only(left: 18, right: 18),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: screenHeight * 0.005,),
+            SizedBox(
+              height: screenHeight * 0.005,
+            ),
             SizedBox(
               child: AppTextBox(
                 textFieldControl: _name,
@@ -89,16 +97,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             Center(
               child: SizedBox(
-                width: screenWidth * 0.9,
-                height: screenHeight * 0.06,
+                width: 120,
+                height: 30,
                 child: ElevatedButton(
                   onPressed: () {
                     _validate();
+
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: primaryColor,
                     shape: RoundedRectangleBorder(
-                      borderRadius:  BorderRadius.circular(12.0),
+                      borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
                   child: Text("Continue"),
@@ -113,7 +123,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   _validate() async {
     var name = _name.controller.text;
-    var nickname=_nickname.controller.text;
+    var nickname = _nickname.controller.text;
     var email = _emailid.controller.text;
     var phone = _mobileno.controller.text;
     var password = _password.controller.text;
@@ -131,6 +141,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else if (password != confirmPassword) {
       return toastMessage("Password doesn't match");
     }
-    return await Get.to(() => const RegisterationScreen()) ;
+    return     context.read<AuthBloc>().add(Register(
+        _name.controller.text,
+        _nickname.controller.text,
+        _mobileno.controller.text,
+        _emailid.controller.text,
+        _password.controller.text,
+        _confirmpassword.controller.text));
+
+
   }
 }

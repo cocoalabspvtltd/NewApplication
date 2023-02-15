@@ -2,7 +2,10 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:new_application/Auth_Bloc/auth_bloc.dart';
+import 'package:new_application/LoginBloc/login_bloc.dart';
 import 'package:new_application/main.dart';
 import 'package:new_application/ui/screens/login_signup/signup_form_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
@@ -91,6 +94,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 35,
                     child: ElevatedButton(
                       onPressed: () {
+
                         signUp = true;
                         setState(() {});
                       },
@@ -302,12 +306,18 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               child: GestureDetector(onTap: () async {
-                await MyApp.fiam.triggerEvent('awesome_event');
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Triggering event: awesome_event'),
-                  ),
-                );
+                context.read<LoginBloc>().add(Login(
+
+                  _email.controller.text,
+                    _password.controller.text,
+                  ));
+
+                // await MyApp.fiam.triggerEvent('awesome_event');
+                // ScaffoldMessenger.of(context).showSnackBar(
+                //   const SnackBar(
+                //     content: Text('Triggering event: awesome_event'),
+                //   ),
+                // );
 
               },
                 child: Text(
