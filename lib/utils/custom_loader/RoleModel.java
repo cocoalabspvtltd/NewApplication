@@ -1,7 +1,7 @@
 class RoleModel {
-  bool? success;
-  int? statusCode;
-  String? message;
+  bool success;
+  int statusCode;
+  String message;
 
   RoleModel({this.success, this.statusCode, this.message});
 

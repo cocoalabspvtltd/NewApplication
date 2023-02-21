@@ -1,15 +1,21 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:new_application/Auth_Bloc/auth_bloc.dart';
-import 'package:new_application/repository/repository_register.dart';
+import 'package:new_application/modelclass/user_signin_model.dart';
+import 'package:new_application/repository/commoninfo_repository.dart';
 import 'package:new_application/ui/screens/login_signup/first_registeration_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
+import 'package:new_application/utils/sharedpref.dart';
 import 'package:new_application/widgets/app_text_field.dart';
 
 import '../../../Auth_Bloc/auth_event.dart';
+import '../../../widgets/app_dialogs.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -26,7 +32,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextFieldControl _mobileno = TextFieldControl();
   TextFieldControl _password = TextFieldControl();
   TextFieldControl _confirmpassword = TextFieldControl();
-
+  AuthBlocUser _authBloc = AuthBlocUser();
+  void initState() {
+    _authBloc = AuthBlocUser();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -122,6 +132,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   _validate() async {
+
+
     var name = _name.controller.text;
     var nickname = _nickname.controller.text;
     var email = _emailid.controller.text;
@@ -141,14 +153,52 @@ class _SignUpScreenState extends State<SignUpScreen> {
     } else if (password != confirmPassword) {
       return toastMessage("Password doesn't match");
     }
-    return     context.read<AuthBloc>().add(Register(
-        _name.controller.text,
-        _nickname.controller.text,
-        _mobileno.controller.text,
-        _emailid.controller.text,
-        _password.controller.text,
-        _confirmpassword.controller.text));
+    return await _signUp(  name,
+          nickname,phone,email,password,confirmPassword
+          );
 
 
+
+  }
+  Future _signUp(
+      String name,
+      String nickname,
+      String mobile,
+      String email,
+
+      String password, String confirmpassword,
+      ) async {
+    AppDialogs.loading();
+
+    Map<String, dynamic> body = {};
+    body["name"] = name;
+    body["nickname"] = nickname;
+    body["email"] = email;
+    body["phone"] = mobile;
+    body["password"] = password;
+    body["password_confirmation"] = confirmpassword;
+    //body["role"] = widget.isDoctor ? 2 : 3;
+
+    try {
+      UserSignInDetails response =
+      await _authBloc!.userRegistration(_name.controller.text,_nickname.controller.text,_mobileno.controller.text,_emailid.controller.text,_password.controller.text,_confirmpassword.controller.text);
+      Get.back();
+      if (response.success!) {
+        print("gth->${response}");
+        //await SharedPrefs.logIn(response);
+        // if (widget.isDoctor) {
+        //   //todo get to doctor module
+        // } else {
+          Get.offAll(() => RegisterationScreen());
+          //todo get to user module
+       // }
+      } else {
+        toastMessage('${response.message!}');
+      }
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      Get.back();
+      toastMessage('Something went wrong. Please try again');
+    }
   }
 }
