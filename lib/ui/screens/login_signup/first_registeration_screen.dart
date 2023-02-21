@@ -2,13 +2,19 @@ import 'dart:io';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:new_application/Auth_Bloc/role_bloc.dart';
+import 'package:new_application/repository/commoninfo_repository.dart';
 import 'package:new_application/ui/screens/home.dart';
 import 'package:new_application/ui/screens/login_signup/login_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/widgets/app_text_field.dart';
+
+import '../../../Auth_Bloc/auth_event.dart';
 
 class RegisterationScreen extends StatefulWidget {
   const RegisterationScreen({Key? key}) : super(key: key);
@@ -18,9 +24,14 @@ class RegisterationScreen extends StatefulWidget {
 }
 
 class _RegisterationScreenState extends State<RegisterationScreen> {
-  String? gender;
+  String? type;
+  String typevalue = "";
   XFile? _licenseimage;
   XFile? _permitimage;
+  int isDriver = 0;
+  int ishotel = 0;
+  int isrestaurent = 0;
+  AuthRepositoryUser _authrepo = AuthRepositoryUser();
   final ImagePicker _picker = ImagePicker();
   TextFieldControl _license_number = TextFieldControl();
   TextFieldControl _vehicleexpdate = TextFieldControl();
@@ -31,6 +42,8 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   TextFieldControl _restaurantno = TextFieldControl();
   TextFieldControl _restaurantaddress = TextFieldControl();
   bool signUp = false;
+  late Map value;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +51,23 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
         width: 400,
         height: 40,
         child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Fill in any of these if you are a user type "),
-            SizedBox(width: 5,),
-            Text("or",style: TextStyle(fontSize: 18),),
-            SizedBox(width: 7,),
-            TextButton(onPressed: (){
-              Get.to(() => const HomeScreen());
-            }, child: Text("Skip >",
-              style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold,fontSize: 20),),)
+            GestureDetector(
+                onTap: () {
+                  _authrepo.RoleUser(
+                      _restaurantname.controller.text,
+                      _restaurantaddress.controller.text,
+                      _restaurantno.controller.text,
+                      _hotelname.controller.text,
+                      _hotelphoneno.controller.text,
+                      _hoteladdress.controller.text,
+                      _license_number.controller.text,
+                  "_licenseimage as String",_vehicleexpdate.controller.text,_permitimage!,typevalue,isDriver,ishotel,isrestaurent);
+                  //  context.read<RoleBloc>().add(Role( _restaurantname.controller.text,_restaurantaddress.controller.text,_restaurantno.controller.text,"veg"
+                  // ));
+                },
+                child: Text("Next")),
           ],
         ),
       ),
@@ -64,16 +84,15 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                       height: 140,
                       child: Image.asset(
                         "assets/images/logo.png",
-                      ),)
-                ),
-                Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Register Now",
-                          style: TextStyle(
-                              fontSize: 40, fontWeight: FontWeight.bold),
-                        ),
                       ),
+                    )),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Register Now",
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  ),
+                ),
                 SizedBox(
                   height: 15,
                 ),
@@ -182,8 +201,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                vertical: 5.0,),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 5.0,
+              ),
               child: Text("License number",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
             ),
@@ -199,9 +220,12 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                ),
                 child: Text("License image",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -238,15 +262,24 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(width: 10,),
-                          Text("Upload image",style: TextStyle(color: Colors.grey,),),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Upload image",
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
                           Spacer(),
                           Icon(
                             Icons.file_present_rounded,
                             size: 20,
                             color: primaryColor,
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                         ],
                       ),
                     ),
@@ -255,10 +288,13 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("license expire date",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -271,10 +307,13 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("Vehicle permit image",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -284,53 +323,83 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               },
               child: _permitimage != null
                   ? Container(
-                height: 80.00,
-                width: 300,
-                margin: EdgeInsets.only(
-                  top: 10.00,
-                ),
-                child: Image.file(
-                  File(_permitimage!.path),
-                  fit: BoxFit.fill,
-                ),
-              )
+                      height: 80.00,
+                      width: 300,
+                      margin: EdgeInsets.only(
+                        top: 10.00,
+                      ),
+                      child: Image.file(
+                        File(_permitimage!.path),
+                        fit: BoxFit.fill,
+                      ),
+                    )
                   : Container(
-                height: 45.00,
-                width: 300.00,
-                margin: EdgeInsets.only(
-                  top: 10.00,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(
-                    10,
-                  ),
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    SizedBox(width: 10,),
-                    Text("Upload image",style: TextStyle(color: Colors.grey,),),
-                    Spacer(),
-                    Icon(
-                      Icons.file_present_rounded,
-                      size: 20,
-                      color: primaryColor,
+                      height: 45.00,
+                      width: 300.00,
+                      margin: EdgeInsets.only(
+                        top: 10.00,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(
+                          10,
+                        ),
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            "Upload image",
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.file_present_rounded,
+                            size: 20,
+                            color: primaryColor,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
                     ),
-                    SizedBox(width: 10,),
-                  ],
-                ),
-              ),
             ),
           ),
-          SizedBox(height: 6,),
+          SizedBox(
+            height: 6,
+          ),
           SizedBox(
             width: 100,
             height: 35,
             child: ElevatedButton(
                 onPressed: () {
+                  if (_license_number.controller.text != null &&
+                      _licenseimage != null &&
+                      _vehicleexpdate != null &&
+                      _permitimage != null) {
+                    isDriver = 1;
+                    _authrepo.RoleUservehicle(
+                        _restaurantname.controller.text,
+                        _restaurantaddress.controller.text,
+                        _restaurantno.controller.text,
+                        _hotelname.controller.text,
+                        _hotelphoneno.controller.text,
+                        _hoteladdress.controller.text,
+                        _license_number.controller.text,
+                        "_licenseimage as String",_vehicleexpdate.controller.text,_permitimage!,typevalue,isDriver,ishotel,isrestaurent);
+                  //  Fluttertoast.showToast(msg: "Successfully Added");
+
+                  } else {
+                    Fluttertoast.showToast(msg: "Please fill the fields");
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor,
@@ -342,7 +411,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
           ),
-          SizedBox(height: 15,)
+          SizedBox(
+            height: 15,
+          )
         ],
       ),
     );
@@ -376,8 +447,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                vertical: 5.0,),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 5.0,
+              ),
               child: Text("Hotel name",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
             ),
@@ -393,10 +466,13 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("Hotel address",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -409,10 +485,13 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("Enter hotel number",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -422,12 +501,30 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(height: 6,),
+          SizedBox(
+            height: 6,
+          ),
           SizedBox(
             width: 100,
             height: 35,
             child: ElevatedButton(
                 onPressed: () {
+                  if (_hotelname.controller.text != null &&
+                      _hoteladdress.controller.text != null &&
+                      _hotelphoneno.controller.text != null) {
+                    ishotel = 1;
+                    _authrepo.RoleUserHotel(
+                        _restaurantname.controller.text,
+                        _restaurantaddress.controller.text,
+                        _restaurantno.controller.text,
+                        _hotelname.controller.text,
+                        _hotelphoneno.controller.text,
+                        _hoteladdress.controller.text,
+                        _license_number.controller.text,
+                        "_licenseimage as String",_vehicleexpdate.controller.text,"_permitimage as String",typevalue,isDriver,ishotel,isrestaurent);
+                  } else {
+                    Fluttertoast.showToast(msg: "Please fill the fields");
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor,
@@ -439,7 +536,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
           ),
-          SizedBox(height: 15,)
+          SizedBox(
+            height: 15,
+          )
         ],
       ),
     );
@@ -473,8 +572,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                vertical: 5.0,),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 5.0,
+              ),
               child: Text("Restaurant name",
                   style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
             ),
@@ -490,10 +591,13 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("Restaurant Number",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -506,10 +610,13 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("Restaurant address",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -522,22 +629,27 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0,
-                  vertical: 5.0,),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 5.0,
+                ),
                 child: Text("Restaurant type",
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
+                    style:
+                        TextStyle(fontSize: 15, fontWeight: FontWeight.w500)),
               )),
           Padding(
-            padding: const EdgeInsets.only(left: 10,right: 10),
+            padding: const EdgeInsets.only(left: 10, right: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Radio(
                   value: 'veg',
-                  groupValue: gender,
+                  groupValue: type,
                   onChanged: (value) {
                     setState(() {
-                      gender = value.toString();
+                      type = value.toString();
+                      typevalue = "veg";
+                      print("->${typevalue}");
                     });
                   },
                   activeColor: primaryColor,
@@ -549,13 +661,17 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(
+                  width: 10,
+                ),
                 Radio(
                   value: 'non-veg',
-                  groupValue: gender,
+                  groupValue: type,
                   onChanged: (value) {
                     setState(() {
-                      gender = value.toString();
+                      type = value.toString();
+                      typevalue = "non-veg";
+                      print("->${typevalue}");
                     });
                   },
                   activeColor: primaryColor,
@@ -567,13 +683,17 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(width: 10,),
+                SizedBox(
+                  width: 10,
+                ),
                 Radio(
                   value: 'both',
-                  groupValue: gender,
+                  groupValue: type,
                   onChanged: (value) {
                     setState(() {
-                      gender = value.toString();
+                      type = value.toString();
+                      typevalue = "veg/non-veg";
+                      print("->${typevalue}");
                     });
                   },
                   activeColor: primaryColor,
@@ -588,12 +708,30 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               ],
             ),
           ),
-          SizedBox(height: 6,),
+          SizedBox(
+            height: 6,
+          ),
           SizedBox(
             width: 100,
             height: 35,
             child: ElevatedButton(
                 onPressed: () {
+                  if (_restaurantname.controller.text.isNotEmpty &&
+                      _restaurantno.controller.text.isNotEmpty &&
+                      _restaurantaddress.controller.text.isNotEmpty) {
+                    isrestaurent = 1;
+                    _authrepo.RoleUserRestaurent(
+                        _restaurantname.controller.text,
+                        _restaurantaddress.controller.text,
+                        _restaurantno.controller.text,
+                        _hotelname.controller.text,
+                        _hotelphoneno.controller.text,
+                        _hoteladdress.controller.text,
+                        _license_number.controller.text,
+                        "_licenseimage as String",_vehicleexpdate.controller.text,_permitimage!,typevalue,isDriver,ishotel,isrestaurent);
+                  } else {
+                    Fluttertoast.showToast(msg: "Please fill the fields");
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   primary: primaryColor,
@@ -605,7 +743,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
           ),
-          SizedBox(height: 15,)
+          SizedBox(
+            height: 15,
+          )
         ],
       ),
     );
@@ -685,6 +825,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       _permitimage = image;
+      print("image->${_permitimage}");
     });
   }
 
@@ -698,7 +839,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   _showpickerpermit() {
     showModalBottomSheet(
         shape:
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
         backgroundColor: Colors.white,
         context: context,
         builder: (context) {

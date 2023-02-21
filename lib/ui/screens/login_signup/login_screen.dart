@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_application/Auth_Bloc/auth_bloc.dart';
 import 'package:new_application/LoginBloc/login_bloc.dart';
@@ -12,6 +14,7 @@ import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/widgets/app_text_field.dart';
 
+import '../welcome screen.dart';
 import 'first_registeration_screen.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -33,7 +36,11 @@ class _LogInScreenState extends State<LogInScreen> {
   TextFieldControl _password = TextFieldControl();
 
   @override
+
+
+
   Widget build(BuildContext context) {
+   // Future.delayed(Duration.zero, () => showAlert(context));
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -306,11 +313,13 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               child: GestureDetector(onTap: () async {
-                context.read<LoginBloc>().add(Login(
-
-                  _email.controller.text,
-                    _password.controller.text,
-                  ));
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (context) => PickerDemo()));
+                // context.read<LoginBloc>().add(Login(
+                //
+                //   _email.controller.text,
+                //     _password.controller.text,
+                //   ));
 
                 // await MyApp.fiam.triggerEvent('awesome_event');
                 // ScaffoldMessenger.of(context).showSnackBar(
