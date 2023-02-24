@@ -14,6 +14,7 @@ import 'package:new_application/repository/commoninfo_repository.dart';
 
 import 'package:new_application/ui/screens/welcome%20screen.dart';
 import 'package:new_application/utils/app_helper.dart';
+import 'package:new_application/utils/sharedpref.dart';
 
 import 'Auth_Bloc/auth_bloc.dart';
 
@@ -21,7 +22,7 @@ void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseDatabase();
-
+  await SharedPrefs.init();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
 

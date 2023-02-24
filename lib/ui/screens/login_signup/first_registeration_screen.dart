@@ -47,28 +47,32 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: SizedBox(
-        width: 400,
-        height: 40,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-                onTap: () {
-                  _authrepo.RoleUser(
-                      _restaurantname.controller.text,
-                      _restaurantaddress.controller.text,
-                      _restaurantno.controller.text,
-                      _hotelname.controller.text,
-                      _hotelphoneno.controller.text,
-                      _hoteladdress.controller.text,
-                      _license_number.controller.text,
-                  "_licenseimage as String",_vehicleexpdate.controller.text,_permitimage!,typevalue,isDriver,ishotel,isrestaurent);
-                  //  context.read<RoleBloc>().add(Role( _restaurantname.controller.text,_restaurantaddress.controller.text,_restaurantno.controller.text,"veg"
-                  // ));
-                },
-                child: Text("Next")),
-          ],
+
+      bottomSheet: Container(color: primaryColor,
+        child: SizedBox(
+          width: 400,
+          height: 40,
+
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                  onTap: () {
+                    _authrepo.RoleUser(
+                    //     _restaurantname.controller.text,
+                    //     _restaurantaddress.controller.text,
+                    //     _restaurantno.controller.text,
+                    //     _hotelname.controller.text,
+                    //     _hotelphoneno.controller.text,
+                    //     _hoteladdress.controller.text,
+                    //     _license_number.controller.text,
+                    // "_licenseimage as String",_vehicleexpdate.controller.text,
+                    //     _permitimage!,typevalue,isDriver,ishotel,isrestaurent
+                    );
+                  },
+                  child: Text(" OR    Join as Traveller",style: TextStyle(color:Colors.white,fontSize: 16),)),
+            ],
+          ),
         ),
       ),
       body: SafeArea(
@@ -165,6 +169,17 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                 SizedBox(
                   height: 40,
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 140.0),
+                  child: ElevatedButton(onPressed: (){
+                    if(isDriver==1||ishotel==1||isrestaurent==1){
+                      Get.to(HomeScreen());
+                    }else{
+                      Fluttertoast.showToast(msg: "Please Save any User tye");
+                    }
+                  }, child: Text("Next")),
+                )
               ],
             ),
           ),
@@ -214,7 +229,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
             child: AppTextBox(
               textFieldControl: _license_number,
               hintText: 'Enter license number',
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.text,
             ),
           ),
           Align(
