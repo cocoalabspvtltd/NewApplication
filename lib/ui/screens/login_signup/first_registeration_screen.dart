@@ -2,19 +2,15 @@ import 'dart:io';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_application/Auth_Bloc/role_bloc.dart';
 import 'package:new_application/repository/commoninfo_repository.dart';
 import 'package:new_application/ui/screens/home.dart';
 import 'package:new_application/ui/screens/login_signup/login_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/widgets/app_text_field.dart';
-
-import '../../../Auth_Bloc/auth_event.dart';
 
 class RegisterationScreen extends StatefulWidget {
   const RegisterationScreen({Key? key}) : super(key: key);
@@ -26,6 +22,8 @@ class RegisterationScreen extends StatefulWidget {
 class _RegisterationScreenState extends State<RegisterationScreen> {
   String? type;
   String typevalue = "";
+  String? hoteltype;
+  String hoteltypevalue="";
   XFile? _licenseimage;
   XFile? _permitimage;
   int isDriver = 0;
@@ -167,12 +165,15 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                 ),
                 _restaurantowner(),
                 SizedBox(
-                  height: 40,
+                  height: 70,
                 ),
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 140.0),
-                  child: ElevatedButton(onPressed: (){
+                Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: primaryColor, // Background color
+                      ),
+                      onPressed: (){
                     if(isDriver==1||ishotel==1||isrestaurent==1){
                       Get.to(HomeScreen());
                     }else{
@@ -193,7 +194,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
       data: Theme.of(context).copyWith(accentColor: primaryColor),
       child: ExpansionTileCard(
         contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-        shadowColor: primaryColor,
+        shadowColor: Colors.black12,
         elevation: 8,
         borderRadius: BorderRadius.circular(10),
         baseColor: Colors.grey[200],
@@ -439,7 +440,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
       data: Theme.of(context).copyWith(accentColor: primaryColor),
       child: ExpansionTileCard(
         contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-        shadowColor: primaryColor,
+        shadowColor: Colors.black12,
         elevation: 8,
         borderRadius: BorderRadius.circular(10),
         baseColor: Colors.grey[200],
@@ -519,6 +520,104 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           SizedBox(
             height: 6,
           ),
+          Padding(
+            padding: const EdgeInsets.only(left: 5, right: 5),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Radio(
+                      value: 'luxury',
+                      groupValue: hoteltype,
+                      onChanged: (value) {
+                        setState(() {
+                          hoteltype = value.toString();
+                          hoteltypevalue = "luxury";
+                          print("->${hoteltypevalue}");
+                        });
+                      },
+                      activeColor: primaryColor,
+                    ),
+                    Text(
+                      "Luxury",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(width: 20,),
+                    Radio(
+                      value: 'premium',
+                      groupValue: hoteltype,
+                      onChanged: (value) {
+                        setState(() {
+                          hoteltype = value.toString();
+                          hoteltypevalue = "premium";
+                          print("->${hoteltypevalue}");
+                        });
+                      },
+                      activeColor: primaryColor,
+                    ),
+                    Text(
+                      "Premium",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
+                    ),
+
+                  ],
+                ),
+                Row(
+                  children: [
+                    Radio(
+                      value: 'midscale',
+                      groupValue: hoteltype,
+                      onChanged: (value) {
+                        setState(() {
+                          hoteltype = value.toString();
+                          hoteltypevalue = "midscale";
+                          print("->${hoteltypevalue}");
+                        });
+                      },
+                      activeColor: primaryColor,
+                    ),
+                    Text(
+                      "Midscale",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(width: 20,),
+                    Radio(
+                      value: 'basic',
+                      groupValue: hoteltype,
+                      onChanged: (value) {
+                        setState(() {
+                          hoteltype = value.toString();
+                          hoteltypevalue = "basic";
+                          print("->${hoteltypevalue}");
+                        });
+                      },
+                      activeColor: primaryColor,
+                    ),
+                    Text(
+                      "Basic",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 6,
+          ),
           SizedBox(
             width: 100,
             height: 35,
@@ -564,7 +663,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
       data: Theme.of(context).copyWith(accentColor: primaryColor),
       child: ExpansionTileCard(
         contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-        shadowColor: primaryColor,
+        shadowColor: Colors.black12,
         elevation: 8,
         borderRadius: BorderRadius.circular(15),
         baseColor: Colors.grey[200],

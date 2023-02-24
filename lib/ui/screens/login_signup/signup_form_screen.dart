@@ -1,20 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:new_application/Auth_Bloc/auth_bloc.dart';
 import 'package:new_application/modelclass/user_signin_model.dart';
-import 'package:new_application/repository/commoninfo_repository.dart';
 import 'package:new_application/ui/screens/login_signup/first_registeration_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/utils/sharedpref.dart';
 import 'package:new_application/widgets/app_text_field.dart';
-
-import '../../../Auth_Bloc/auth_event.dart';
 import '../../../widgets/app_dialogs.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -46,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: screenHeight * 0.005,
+              height: 10,
             ),
             SizedBox(
               child: AppTextBox(

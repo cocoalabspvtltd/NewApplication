@@ -7,6 +7,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/sharedpref.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -24,106 +25,97 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-
-
     return
-
       Scaffold(
         key: _scaffoldKey,
         appBar:AppBar(
-
           elevation: 4,
           centerTitle: true,
           backgroundColor: primaryColor,
           iconTheme: const IconThemeData(
             color: Colors.white,
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: InkWell(
-                  onTap: (){
-                    //Navigator.push(context,  MaterialPageRoute(builder: (context) => NotificationScreen()));
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                          child:
-                          Icon(Icons.notifications_none_rounded,size: 25,color: Colors.white)
-                      ),
-                      Positioned(
-                        right: 0,
-                        child:  Container(
-                          padding: EdgeInsets.all(1),
-                          decoration: new BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          constraints: BoxConstraints(
-                            minWidth: 13,
-                            minHeight: 13,
-                          ),
-
-                        ),),
-                    ],
-                  ),
+            actions: [
+              badges.Badge(
+                position: badges.BadgePosition.topEnd(top: 10, end: 10),
+                badgeStyle: badges.BadgeStyle(badgeColor: Colors.red,shape: badges.BadgeShape.circle),
+                badgeAnimation: badges.BadgeAnimation.scale(
+                  disappearanceFadeAnimationDuration: Duration(milliseconds: 300),
+                ),
+                badgeContent: Text(
+                  "7",
+                  style: TextStyle(color: Colors.white, fontSize: 8),
+                ),
+                child: IconButton(
+                  icon: Icon(Icons.notifications_none_rounded),
+                  onPressed: () {},
                 ),
               ),
-
             ],
-          ),
         ),
         body: SafeArea(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 38.0,top: 30),
-                child: Text("Book Online",style: TextStyle(fontSize: 20),),
-              ),
-              SizedBox(height: 30
-                ,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 28.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-
-                      decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700],),
-                      child: Image.asset("assets/images/Vector.png"),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20,),
+                const Text("Book Online",style: TextStyle(fontSize: 20),),
+                const SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: secondaryColor,),
+                          child: Image.asset("assets/images/Vector.png"),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text("Ride",style: TextStyle(fontSize: 16),)
+                      ],
                     ),
-                  ),
-                  SizedBox(width: 20
-                    ,),
-                  Container(
-                    height: 100,
-                    width: 100,
-
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700],),
-                    child: Image.asset("assets/images/hotel.png"),
-                  ),
-                  SizedBox(width: 20
-                    ,),
-                  Container(
-                    height: 100,
-                    width: 100,
-
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700],),
-                    child: Image.asset("assets/images/restaurent.png"),
-                  ),
-                ],
-              )
-            ],
+                    const SizedBox(width: 15),
+                    Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: secondaryColor,),
+                          child: Image.asset("assets/images/hotel.png"),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text("Restaurant",style: TextStyle(fontSize: 16),)
+                      ],
+                    ),
+                    const SizedBox(width: 15,),
+                    Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: secondaryColor,),
+                          child: Image.asset("assets/images/restaurent.png"),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text("Hotel",style: TextStyle(fontSize: 16),)
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20,),
+                const Divider(
+                  color: Colors.black,
+                  height: 1.5,
+                )
+              ],
+            ),
           ),
         ),
         drawer: _drawer(),
@@ -179,8 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   Widget _drawer() {
-
-    return  Drawer(
+    return Drawer(
       backgroundColor: Colors.white,
       child: Container(
         color: Colors.white,
