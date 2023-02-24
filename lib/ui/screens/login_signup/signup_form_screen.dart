@@ -185,7 +185,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       Get.back();
       if (response.success!) {
         print("gth->${response}");
-        //await SharedPrefs.logIn(response);
+        await SharedPrefs.logIn(response);
         // if (widget.isDoctor) {
         //   //todo get to doctor module
         // } else {

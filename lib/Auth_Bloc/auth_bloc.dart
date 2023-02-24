@@ -24,9 +24,9 @@ class AuthBlocUser {
     }
   }
 
-  Future<UserSignInDetails> login(String body) async {
+  Future<UserSignInDetails> login(String email,password,context) async {
     try {
-      return await _authRepository!.login(body);
+      return await _authRepository!.login(email,password,context);
     } catch (e, s) {
       Completer().completeError(e, s);
       throw e;
@@ -37,7 +37,11 @@ class AuthBlocUser {
       String vehicledate,
       XFile permitimage,String type,int savevaluedriver,savevaluehoetel,savevaluerestaurent) async {
     try {
-      return await _authRepository!.RoleUser( restname,restnum,resasddress,hotelname,hotelphn,hoteladd,vehiclenum,vehicleimage,vehicledate,permitimage,type,savevaluedriver,savevaluehoetel,savevaluerestaurent);
+      return await _authRepository!.RoleUser(
+          // restname,restnum,resasddress,hotelname,hotelphn,hoteladd,
+          // vehiclenum,vehicleimage,vehicledate,permitimage,type,savevaluedriver,savevaluehoetel,
+          // savevaluerestaurent
+      );
     } catch (e, s) {
       Completer().completeError(e, s);
       throw e;

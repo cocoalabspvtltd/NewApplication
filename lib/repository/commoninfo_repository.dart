@@ -1,12 +1,16 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_application/modelclass/login_modelclass.dart';
 import 'package:new_application/modelclass/user_signin_model.dart';
 import 'package:new_application/repository/remoteconfig.dart';
+import 'package:new_application/ui/screens/home.dart';
+import 'package:new_application/ui/screens/welcome%20screen.dart';
 import 'package:new_application/widgets/api_provider.dart';
 
 String apiToken = "";
@@ -35,29 +39,25 @@ class AuthRepositoryUser {
     return UserSignInDetails.fromJson(response.data);
   }
 
-  Future<UserSignInDetails> login(String body) async {
-    final response =
-        await apiClient!.getJsonInstance().post(ApisUser.loginUser, data: body);
+  Future<UserSignInDetails> login(String email,password,  context, ) async {
+    FormData formData = FormData.fromMap({
+
+      "email": email,
+
+      "password": password,
+
+    });
+    Response response =
+        await apiClient!.getJsonInstance().post(ApisUser.loginUser, data: formData);
+    if(response.statusCode==200){
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
+
     return UserSignInDetails.fromJson(response.data);
   }
 
-  // if(savevaluerestaurent ==1)
-  //
-  //
-  // "restaurant": {
-  // "name": restname,
-  // "phone": resasddress,
-  // "address": restnum,
-  // "type": "veg"
-  // }
-  // else if(savevaluedriver ==1)
 
-  // else if(savevaluehotel ==1)
-  // "hotel":{
-  // "hotel_name":hotelname,
-  // "address":hoteladdres,
-  // "hotel_phone":hotelphn
-  // }
 
 
 
@@ -89,6 +89,7 @@ class AuthRepositoryUser {
               'Accept': 'application/json',
               'Authorization': "Bearer " + apiToken,
             }));
+    print("->${response}");
     if(response.statusCode==200){
       Fluttertoast.showToast(msg: "${response.statusMessage}");
     }
@@ -159,17 +160,17 @@ class AuthRepositoryUser {
     return RoleModel.fromJson(response.data);
   }
   Future<RoleModel> RoleUser(
-
-      String restname,
-      restnum,
-      resasddress,
-      String hotelname,
-      String hotelphn,
-      String hoteladdres,
-      String vehiclenum,
-      String vehicleimage,
-      String vehicledate,
-      XFile permitimage,String type, int savevaluedriver,savevaluehotel,savevaluerestaurent) async {
+      // String restname,
+      // restnum,
+      // resasddress,
+      // String hotelname,
+      // String hotelphn,
+      // String hoteladdres,
+      // String vehiclenum,
+      // String vehicleimage,
+      // String vehicledate,
+      // XFile permitimage,String type, int savevaluedriver,savevaluehotel,savevaluerestaurent
+      ) async {
 
     final response =
     await apiClient!.getJsonInstance().post(ApisUser.setUserRole,

@@ -1,17 +1,26 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
+
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_in_app_messaging/firebase_in_app_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+
+import 'package:fluttertoast/fluttertoast.dart';
+
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_application/Auth_Bloc/auth_bloc.dart';
-import 'package:new_application/LoginBloc/login_bloc.dart';
-import 'package:new_application/main.dart';
+
+import 'package:new_application/modelclass/user_signin_model.dart';
+import 'package:new_application/repository/commoninfo_repository.dart';
+import 'package:new_application/ui/screens/home.dart';
 import 'package:new_application/ui/screens/login_signup/signup_form_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
+import 'package:new_application/utils/sharedpref.dart';
+import 'package:new_application/widgets/app_dialogs.dart';
 import 'package:new_application/widgets/app_text_field.dart';
 
 import '../welcome screen.dart';
@@ -31,7 +40,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
   bool signUp = false;
   FormatAndValidate formatAndValidate = FormatAndValidate();
-
+  AuthBlocUser _loginuser = AuthBlocUser();
   TextFieldControl _email = TextFieldControl();
   TextFieldControl _password = TextFieldControl();
 
@@ -313,8 +322,12 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               ),
               child: GestureDetector(onTap: () async {
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => PickerDemo()));
+                print("loading");
+                await _login(_email.controller.text,_password.controller.text,context);
+                //await _loginuser.login(_email.controller.text,_password.controller.text,context);
+                // Navigator.pushReplacement(
+                //     context, MaterialPageRoute(builder: (context) => PickerDemo()));
+                //
                 // context.read<LoginBloc>().add(Login(
                 //
                 //   _email.controller.text,
@@ -339,5 +352,30 @@ class _LogInScreenState extends State<LogInScreen> {
         ),
       ],
     );
+  }
+  Future _login(String email,password,context) async {
+    AppDialogs.loading();
+
+    Map<String, dynamic> body = {};
+    body["email"] = _email.controller.text;
+    body["password"] = _password.controller.text;
+
+    try {
+      UserSignInDetails response = await _loginuser.login(email,password,context);
+      print(">${response.users!.nickName}");
+      Get.back();
+
+      if (response.success!) {
+        await SharedPrefs.logIn(response);
+
+        Get.offAll(() => HomeScreen());
+      } else {
+        toastMessage('${response.message!}');
+      }
+    } catch (e, s) {
+      Completer().completeError(e, s);
+      Get.back();
+      Fluttertoast.showToast(msg:'Something went wrong. Please try again');
+    }
   }
 }
