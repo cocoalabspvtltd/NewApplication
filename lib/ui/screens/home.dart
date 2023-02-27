@@ -1,9 +1,6 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/sharedpref.dart';
@@ -18,10 +15,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late GoogleMapController mapController;
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+  // final LatLng _center = const LatLng(45.521563, -122.677433);
+  // void _onMapCreated(GoogleMapController controller) {
+  //   mapController = controller;
+  // }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
@@ -38,16 +35,16 @@ class _HomeScreenState extends State<HomeScreen> {
             actions: [
               badges.Badge(
                 position: badges.BadgePosition.topEnd(top: 10, end: 10),
-                badgeStyle: badges.BadgeStyle(badgeColor: Colors.red,shape: badges.BadgeShape.circle),
-                badgeAnimation: badges.BadgeAnimation.scale(
+                badgeStyle: const badges.BadgeStyle(badgeColor: Colors.red,shape: badges.BadgeShape.circle),
+                badgeAnimation: const badges.BadgeAnimation.scale(
                   disappearanceFadeAnimationDuration: Duration(milliseconds: 300),
                 ),
-                badgeContent: Text(
+                badgeContent: const Text(
                   "7",
                   style: TextStyle(color: Colors.white, fontSize: 8),
                 ),
                 child: IconButton(
-                  icon: Icon(Icons.notifications_none_rounded),
+                  icon: const Icon(Icons.notifications_none_rounded),
                   onPressed: () {},
                 ),
               ),
@@ -177,27 +174,26 @@ class _HomeScreenState extends State<HomeScreen> {
         color: Colors.white,
         child: ListView(
           children: [
-            Container(
+            SizedBox(
               height: 100,
               child: DrawerHeader(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
                   child:
                   Padding(
                     padding: const EdgeInsets.only(left: 260),
-                    child: Container(
-                        child: GestureDetector(
-                            onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => DashBoard(
-                              //         UserName1: '',
-                              //       )),
-                              // );
-                            },
-                            child: Icon(CupertinoIcons.clear_circled))),
+                    child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => DashBoard(
+                          //         UserName1: '',
+                          //       )),
+                          // );
+                        },
+                        child: const Icon(CupertinoIcons.clear_circled)),
                   )),
             ),
             ListTile(
@@ -208,12 +204,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/mymatches.png",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
                   onTap: () {
-                    print("hg");
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => MyMatches(fragmentToShow: 0, pendingamount: '', nopaycount: '',)),
@@ -230,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             ListTile(
@@ -241,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/myclubs.png",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -272,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/myresults.png",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -305,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/history.png",width: 30,height: 20,
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -329,11 +324,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Row(children: [
-                Padding(
-                    padding: const EdgeInsets.all(5.0),
+                const Padding(
+                    padding: EdgeInsets.all(5.0),
                     child: Icon(Icons.settings,
                         color: Colors.black, size: 22)),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Text(
@@ -354,7 +349,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // });
               },
             ),
-            Divider(color: Colors.grey),
+            const Divider(color: Colors.grey),
             ListTile(
               title: Row(children: [
                 // Padding(
@@ -362,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   child: Image.asset("assets/images/privacy.png",
                 //       color: Colors.black),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -389,12 +384,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
+                const Padding(
+                  padding: EdgeInsets.all(5.0),
                   child:
                   Icon(Icons.call,color: Colors.black,size: 20,),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -428,7 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     color: Colors.black,
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -462,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     height: 20,
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -489,11 +484,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
+                const Padding(
+                  padding: EdgeInsets.all(5.0),
                   child: Icon(Icons.logout, color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -503,22 +498,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          content: Text(
+                          content: const Text(
                             'Are you sure want to log out?',
                             style: TextStyle(fontWeight: FontWeight.w500),
                           ),
                           actions: [
                             OutlinedButton(
-                              child: Text('No'),
+                              child: const Text('No'),
                               onPressed: () {
                                // Get.back();
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             ElevatedButton(
-                              child: Text('Yes'),
+                              child: const Text('Yes'),
                               onPressed: () {
                                 Get.back();
                                 SharedPrefs.logOut();

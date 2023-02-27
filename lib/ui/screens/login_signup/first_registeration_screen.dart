@@ -29,16 +29,16 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   int isDriver = 0;
   int ishotel = 0;
   int isrestaurent = 0;
-  AuthRepositoryUser _authrepo = AuthRepositoryUser();
+  final AuthRepositoryUser _authrepo = AuthRepositoryUser();
   final ImagePicker _picker = ImagePicker();
-  TextFieldControl _license_number = TextFieldControl();
-  TextFieldControl _vehicleexpdate = TextFieldControl();
-  TextFieldControl _hotelname = TextFieldControl();
-  TextFieldControl _hoteladdress = TextFieldControl();
-  TextFieldControl _hotelphoneno = TextFieldControl();
-  TextFieldControl _restaurantname = TextFieldControl();
-  TextFieldControl _restaurantno = TextFieldControl();
-  TextFieldControl _restaurantaddress = TextFieldControl();
+  final TextFieldControl _license_number = TextFieldControl();
+  final TextFieldControl _vehicleexpdate = TextFieldControl();
+  final TextFieldControl _hotelname = TextFieldControl();
+  final TextFieldControl _hoteladdress = TextFieldControl();
+  final TextFieldControl _hotelphoneno = TextFieldControl();
+  final TextFieldControl _restaurantname = TextFieldControl();
+  final TextFieldControl _restaurantno = TextFieldControl();
+  final TextFieldControl _restaurantaddress = TextFieldControl();
   bool signUp = false;
   late Map value;
 
@@ -68,7 +68,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     //     _permitimage!,typevalue,isDriver,ishotel,isrestaurent
                     );
                   },
-                  child: Text(" OR    Join as Traveller",style: TextStyle(color:Colors.white,fontSize: 16),)),
+                  child: const Text(" OR    Join as Traveller",style: TextStyle(color:Colors.white,fontSize: 16),)),
             ],
           ),
         ),
@@ -88,14 +88,14 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         "assets/images/logo.png",
                       ),
                     )),
-                Align(
+                const Align(
                   alignment: Alignment.center,
                   child: Text(
                     "Register Now",
                     style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Row(
@@ -108,19 +108,19 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           onPressed: () {
                             signUp = false;
                             setState(() {});
-                            Get.to(() => LogInScreen());
+                            Get.to(() => const LogInScreen());
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: !signUp ? Colors.grey : secondaryColor,
+                            backgroundColor: !signUp ? Colors.grey : secondaryColor,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25)),
                           ),
-                          child: Text(
+                          child: const Text(
                             "Login",
                             style: TextStyle(color: Colors.white, fontSize: 16),
                           )),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
                     SizedBox(
@@ -132,12 +132,12 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           setState(() {});
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: secondaryColor,
+                          backgroundColor: secondaryColor,
                           shape: RoundedRectangleBorder(
                               //to set border radius to button
                               borderRadius: BorderRadius.circular(25)),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Register",
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
@@ -145,41 +145,41 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Text(
+                const Text(
                   "User Type",
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 _vehicleowner(),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 _hotelowner(),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 _restaurantowner(),
-                SizedBox(
+                const SizedBox(
                   height: 70,
                 ),
                 Align(
                   alignment: AlignmentDirectional.topEnd,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: primaryColor, // Background color
+                        backgroundColor: primaryColor, // Background color
                       ),
                       onPressed: (){
                     if(isDriver==1||ishotel==1||isrestaurent==1){
-                      Get.to(HomeScreen());
+                      Get.to(const HomeScreen());
                     }else{
                       Fluttertoast.showToast(msg: "Please Save any User tye");
                     }
-                  }, child: Text("Next")),
+                  }, child: const Text("Next")),
                 )
               ],
             ),
@@ -191,9 +191,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
 
   _vehicleowner() {
     return Theme(
-      data: Theme.of(context).copyWith(accentColor: primaryColor),
+      data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primaryColor)),
       child: ExpansionTileCard(
-        contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         shadowColor: Colors.black12,
         elevation: 8,
         borderRadius: BorderRadius.circular(10),
@@ -202,22 +202,22 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           CupertinoIcons.person_alt_circle,
           color: primaryColor,
         ),
-        title: Text(
+        title: const Text(
           "Vehicle Owner",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         children: <Widget>[
-          Divider(
+          const Divider(
             thickness: 1.5,
             height: 1.0,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 5.0,
               ),
@@ -233,10 +233,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.text,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                 ),
                 child: Text("License image",
@@ -253,7 +253,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   ? Container(
                       height: 80.00,
                       width: 300,
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 10.00,
                       ),
                       child: Image.file(
@@ -264,7 +264,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   : Container(
                       height: 45.00,
                       width: 300.00,
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 10.00,
                       ),
                       decoration: BoxDecoration(
@@ -278,22 +278,22 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             "Upload image",
                             style: TextStyle(
                               color: Colors.grey,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.file_present_rounded,
                             size: 20,
                             color: primaryColor,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                         ],
@@ -301,10 +301,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     ),
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -320,10 +320,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.datetime,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -341,7 +341,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   ? Container(
                       height: 80.00,
                       width: 300,
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 10.00,
                       ),
                       child: Image.file(
@@ -352,7 +352,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   : Container(
                       height: 45.00,
                       width: 300.00,
-                      margin: EdgeInsets.only(
+                      margin: const EdgeInsets.only(
                         top: 10.00,
                       ),
                       decoration: BoxDecoration(
@@ -366,22 +366,22 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                       ),
                       child: Row(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
-                          Text(
+                          const Text(
                             "Upload image",
                             style: TextStyle(
                               color: Colors.grey,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Icon(
                             Icons.file_present_rounded,
                             size: 20,
                             color: primaryColor,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                         ],
@@ -389,7 +389,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
           SizedBox(
@@ -418,16 +418,16 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
+                  backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ),
-                child: Text(
+                child: const Text(
                   "Save",
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           )
         ],
@@ -437,9 +437,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
 
   _hotelowner() {
     return Theme(
-      data: Theme.of(context).copyWith(accentColor: primaryColor),
+      data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primaryColor)),
       child: ExpansionTileCard(
-        contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         shadowColor: Colors.black12,
         elevation: 8,
         borderRadius: BorderRadius.circular(10),
@@ -448,22 +448,22 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           CupertinoIcons.person_alt_circle,
           color: primaryColor,
         ),
-        title: Text(
+        title: const Text(
           "Hotel Owner",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         children: <Widget>[
-          Divider(
+          const Divider(
             thickness: 1.5,
             height: 1.0,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 5.0,
               ),
@@ -479,10 +479,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.text,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -498,10 +498,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.text,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -517,7 +517,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.number,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
           Padding(
@@ -534,19 +534,19 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "luxury";
-                          print("->${hoteltypevalue}");
+                          debugPrint("->${hoteltypevalue}");
                         });
                       },
                       activeColor: primaryColor,
                     ),
-                    Text(
+                    const Text(
                       "Luxury",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(width: 20,),
+                    const SizedBox(width: 20,),
                     Radio(
                       value: 'premium',
                       groupValue: hoteltype,
@@ -554,12 +554,12 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "premium";
-                          print("->${hoteltypevalue}");
+                          debugPrint("->${hoteltypevalue}");
                         });
                       },
                       activeColor: primaryColor,
                     ),
-                    Text(
+                    const Text(
                       "Premium",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -578,19 +578,19 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "midscale";
-                          print("->${hoteltypevalue}");
+                          debugPrint("->${hoteltypevalue}");
                         });
                       },
                       activeColor: primaryColor,
                     ),
-                    Text(
+                    const Text(
                       "Midscale",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(width: 20,),
+                    const SizedBox(width: 20,),
                     Radio(
                       value: 'basic',
                       groupValue: hoteltype,
@@ -598,12 +598,12 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "basic";
-                          print("->${hoteltypevalue}");
+                          debugPrint("->${hoteltypevalue}");
                         });
                       },
                       activeColor: primaryColor,
                     ),
-                    Text(
+                    const Text(
                       "Basic",
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
@@ -615,7 +615,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
           SizedBox(
@@ -641,16 +641,16 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
+                  backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ),
-                child: Text(
+                child: const Text(
                   "Save",
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           )
         ],
@@ -660,9 +660,9 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
 
   _restaurantowner() {
     return Theme(
-      data: Theme.of(context).copyWith(accentColor: primaryColor),
+      data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: primaryColor)),
       child: ExpansionTileCard(
-        contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        contentPadding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
         shadowColor: Colors.black12,
         elevation: 8,
         borderRadius: BorderRadius.circular(15),
@@ -671,22 +671,22 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           CupertinoIcons.person_alt_circle,
           color: primaryColor,
         ),
-        title: Text(
+        title: const Text(
           "Restaurant Owner",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         children: <Widget>[
-          Divider(
+          const Divider(
             thickness: 1.5,
             height: 1.0,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Align(
+          const Align(
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
+              padding: EdgeInsets.symmetric(
                 horizontal: 16.0,
                 vertical: 5.0,
               ),
@@ -702,10 +702,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.text,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -721,10 +721,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.number,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -740,10 +740,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               keyboardType: TextInputType.text,
             ),
           ),
-          Align(
+          const Align(
               alignment: Alignment.centerLeft,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 16.0,
                   vertical: 5.0,
                 ),
@@ -768,14 +768,14 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   },
                   activeColor: primaryColor,
                 ),
-                Text(
+                const Text(
                   "Veg",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Radio(
@@ -785,19 +785,19 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     setState(() {
                       type = value.toString();
                       typevalue = "non-veg";
-                      print("->${typevalue}");
+                      debugPrint("->${typevalue}");
                     });
                   },
                   activeColor: primaryColor,
                 ),
-                Text(
+                const Text(
                   "Non-veg",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Radio(
@@ -812,7 +812,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   },
                   activeColor: primaryColor,
                 ),
-                Text(
+                const Text(
                   "Both",
                   style: TextStyle(
                     fontWeight: FontWeight.w500,
@@ -822,7 +822,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
           SizedBox(
@@ -848,16 +848,16 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: primaryColor,
+                  backgroundColor: primaryColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ),
-                child: Text(
+                child: const Text(
                   "Save",
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 )),
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           )
         ],
@@ -902,7 +902,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           onPressed: () {
                             _imagefromComeraliscence();
                           },
-                          icon: Icon(Icons.camera_alt_rounded,
+                          icon: const Icon(Icons.camera_alt_rounded,
                               color: Colors.white),
                           iconSize: 30,
                         ),
@@ -910,7 +910,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                       Text("Camera"),
                     ],
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Column(
                     children: [
                       CircleAvatar(
@@ -925,7 +925,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           iconSize: 30,
                         ),
                       ),
-                      Text("Gallery"),
+                      const Text("Gallery"),
                     ],
                   ),
                 ],
@@ -957,7 +957,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
         backgroundColor: Colors.white,
         context: context,
         builder: (context) {
-          return Container(
+          return SizedBox(
             height: 100,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -991,12 +991,12 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           onPressed: () {
                             _imagefromGallerypermit();
                           },
-                          icon: Icon(Icons.photo),
+                          icon: const Icon(Icons.photo),
                           color: Colors.white,
                           iconSize: 30,
                         ),
                       ),
-                      Text("Gallery"),
+                      const Text("Gallery"),
                     ],
                   ),
                 ],
