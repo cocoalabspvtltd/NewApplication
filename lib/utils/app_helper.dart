@@ -28,7 +28,7 @@ void toastMessage(dynamic message,
 }
 
 String parseformatDate(var _dt, [String? _format]) {
-  var dateformat = new DateFormat(_format);
+  var dateformat =  DateFormat(_format);
   DateFormat apidatedateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
 
   try {
@@ -47,7 +47,7 @@ String getDateGap(String dateReceived) {
     DateTime dateTimeCreatedAt = DateTime.parse(dateReceived);
     DateTime dateTimeNow = DateTime.now();
     final differenceInDays = dateTimeCreatedAt.difference(dateTimeNow).inDays;
-    print('$differenceInDays');
+    debugPrint('$differenceInDays');
     return '$differenceInDays';
   } catch (e) {
     return "";
@@ -59,7 +59,7 @@ double getFileSizeInMb(File file)  {
   int sizeInBytes = file.lengthSync();
   double sizeInMb = sizeInBytes / (1024 * 1024);
 
-  print('${file.path}: $sizeInMb');
+  debugPrint('${file.path}: $sizeInMb');
   return sizeInMb;
 }
 

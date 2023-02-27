@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:new_application/modelclass/user_signin_model.dart';
 import 'package:new_application/utils/user_utils.dart';
-
-
 import '../utils/sharedpref.dart';
 
 
@@ -21,37 +19,37 @@ class ApiInterceptor extends Interceptor {
       // options.headers.addAll({"Authorization": "Bearer $s1"});
     }
 
-    print("!!!!!!!!!!!!!! Request Begin !!!!!!!!!!!!!!!!!!!!!");
-    print(
+    debugPrint("!!!!!!!!!!!!!! Request Begin !!!!!!!!!!!!!!!!!!!!!");
+    debugPrint(
         "REQUEST[${options.method}] => PATH: ${options.baseUrl}${options.path}");
-    print("Headers:");
-    options.headers.forEach((k, v) => print('$k: $v'));
+    debugPrint("Headers:");
+    options.headers.forEach((k, v) => debugPrint('$k: $v'));
     // ignore: unnecessary_null_comparison
     if (options.queryParameters != null) {
-      print("QueryParameters:");
-      options.queryParameters.forEach((k, v) => print('$k: $v'));
+      debugPrint("QueryParameters:");
+      options.queryParameters.forEach((k, v) => debugPrint('$k: $v'));
     }
     if (options.data != null) {
       try {
-        print('body:');
+        debugPrint('body:');
         FormData d = options.data;
         d.fields.forEach((element) {
-          print('${element.key}:${element.value}');
+          debugPrint('${element.key}:${element.value}');
         });
       } catch (e) {
-        print("${options.data}");
+        debugPrint("${options.data}");
       }
     }
-    print("!!!!!!!!!!!!!!!!!!!! Request End !!!!!!!!!!!!!!!!!!!!!");
+    debugPrint("!!!!!!!!!!!!!!!!!!!! Request End !!!!!!!!!!!!!!!!!!!!!");
 
     super.onRequest(options, handler);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print("************** Response Begin ************************");
-    print("ResMethodType : [${response.requestOptions.method}]");
-    print(
+    debugPrint("************** Response Begin ************************");
+    debugPrint("ResMethodType : [${response.requestOptions.method}]");
+    debugPrint(
         "RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.baseUrl}${response.requestOptions.path}");
     if (response.statusCode == 401) {
       SharedPrefs.logOut();
@@ -66,7 +64,7 @@ class ApiInterceptor extends Interceptor {
         if (endingIndex > responseAsString.length) {
           endingIndex = responseAsString.length;
         }
-        print(
+        debugPrint(
             '''${responseAsString.substring(i * maxCharactersPerLine, endingIndex)}''');
       }
     } else {

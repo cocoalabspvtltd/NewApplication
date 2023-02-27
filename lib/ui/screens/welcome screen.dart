@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:geocoding/geocoding.dart';
@@ -44,7 +43,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }
     if (permission == LocationPermission.whileInUse) {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LogInScreen()));
+          context, MaterialPageRoute(builder: (context) => const LogInScreen()));
       return true;
     }
 
@@ -81,6 +80,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       debugPrint(e);
     });
   }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
@@ -163,7 +163,7 @@ class PickerDemoState extends State<PickerDemo> {
                           components: [Component(Component.country, 'np')],
                           //google_map_webservice package
                           onError: (err){
-                            print(err);
+                            debugPrint('$err');
                           }
                       );
 
@@ -173,7 +173,7 @@ class PickerDemoState extends State<PickerDemo> {
                         });
                         //form google_maps_webservice package
                         final plist = GoogleMapsPlaces(apiKey:"AIzaSyDSFXeJ_Zuy804HSkWMaK-YGzSzIXYhVJs",
-                          apiHeaders: await GoogleApiHeaders().getHeaders(),
+                          apiHeaders: await const GoogleApiHeaders().getHeaders(),
                           //from google_api_headers package
                         );
                         String placeid = place.placeId ?? "0";
@@ -188,15 +188,15 @@ class PickerDemoState extends State<PickerDemo> {
                       }
                     },
                     child:Padding(
-                      padding: EdgeInsets.all(15),
+                      padding: const EdgeInsets.all(15),
                       child: Card(
                         child: Container(
-                            padding: EdgeInsets.all(0),
+                            padding: const EdgeInsets.all(0),
                             width: MediaQuery.of(context).size.width - 40,
                             child: ListTile(
                               leading: Image.asset("assets/images/picker.png", width: 25,),
-                              title:Text(location, style: TextStyle(fontSize: 18),),
-                              trailing: Icon(Icons.search),
+                              title:Text(location, style: const TextStyle(fontSize: 18),),
+                              trailing: const Icon(Icons.search),
                               dense: true,
                             )
                         ),
@@ -204,8 +204,6 @@ class PickerDemoState extends State<PickerDemo> {
                     )
                 )
             )
-
-
           ]
       )
     );
@@ -216,7 +214,7 @@ class PickerDemoState extends State<PickerDemo> {
         MaterialPageRoute(builder: (context) => PlacePicker("AIzaSyDSFXeJ_Zuy804HSkWMaK-YGzSzIXYhVJs")));
 
     // Handle the result in your way
-    print("->${result}");
+    debugPrint("->$result");
   }
 }
 

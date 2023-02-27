@@ -183,7 +183,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           ),
                         ),
                       ),
-                      onPressed: () {print("object");
+                      onPressed: () {debugPrint("object");
                         signup(context); },
                       child: Image.asset(
                         'assets/icons/ic_google.png',
@@ -236,7 +236,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
       if (result != null) {
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => RegisterationScreen()));
+            context, MaterialPageRoute(builder: (context) => const RegisterationScreen()));
       } // if result not null we simply call the MaterialpageRoute,
       // for go to the HomePage screen
     }
@@ -306,11 +306,11 @@ class _LogInScreenState extends State<LogInScreen> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(12.0),
+                  borderRadius:  BorderRadius.circular(12.0),
                 ),
               ),
               child: GestureDetector(onTap: () async {
-                print("loading");
+                debugPrint("loading");
                 await _login(_email.controller.text,_password.controller.text,context);
                 //await _loginuser.login(_email.controller.text,_password.controller.text,context);
                 // Navigator.pushReplacement(
@@ -330,7 +330,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 // );
 
               },
-                child: Text(
+                child: const Text(
                   "Login Now",
                   style: TextStyle(fontSize: 16),
                 ),
@@ -350,7 +350,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
     try {
       UserSignInDetails response = await _loginuser.login(email,password,context);
-      print(">${response.users!.nickName}");
+      debugPrint(">${response.users!.nickName}");
       Get.back();
 
       if (response.success!) {

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -47,7 +46,7 @@ class AuthRepositoryUser {
         await apiClient!.getJsonInstance().post(ApisUser.loginUser, data: formData);
     if(response.statusCode==200){
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
     }
 
     return UserSignInDetails.fromJson(response.data);
@@ -65,7 +64,7 @@ class AuthRepositoryUser {
       String vehicledate,
       XFile permitimage,String type, int savevaluedriver,savevaluehotel,savevaluerestaurent) async {
     String fileName = permitimage.path.split('/').last;
-    print("->${fileName}");
+    debugPrint("->$fileName");
   FormData formData = FormData.fromMap({
   "is_driver": savevaluedriver,
   "driver":{
@@ -81,7 +80,7 @@ class AuthRepositoryUser {
               'Accept': 'application/json',
               'Authorization': "Bearer " + apiToken,
             }));
-    print("->${response}");
+    debugPrint("->$response");
     if(response.statusCode==200){
       Fluttertoast.showToast(msg: "${response.statusMessage}");
     }
