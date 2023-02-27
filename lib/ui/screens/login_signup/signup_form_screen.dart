@@ -1,21 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:new_application/Auth_Bloc/auth_bloc.dart';
 import 'package:new_application/modelclass/user_signin_model.dart';
-import 'package:new_application/repository/commoninfo_repository.dart';
 import 'package:new_application/ui/screens/login_signup/first_registeration_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/utils/sharedpref.dart';
+import 'package:new_application/widgets/app_dialogs.dart';
 import 'package:new_application/widgets/app_text_field.dart';
-
-import '../../../Auth_Bloc/auth_event.dart';
-import '../../../widgets/app_dialogs.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -26,13 +19,14 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   FormatAndValidate formatAndValidate = FormatAndValidate();
-  TextFieldControl _name = TextFieldControl();
-  TextFieldControl _nickname = TextFieldControl();
-  TextFieldControl _emailid = TextFieldControl();
-  TextFieldControl _mobileno = TextFieldControl();
-  TextFieldControl _password = TextFieldControl();
-  TextFieldControl _confirmpassword = TextFieldControl();
+  final TextFieldControl _name = TextFieldControl();
+  final TextFieldControl _nickname = TextFieldControl();
+  final TextFieldControl _emailid = TextFieldControl();
+  final TextFieldControl _mobileno = TextFieldControl();
+  final TextFieldControl _password = TextFieldControl();
+  final TextFieldControl _confirmpassword = TextFieldControl();
   AuthBlocUser _authBloc = AuthBlocUser();
+  @override
   void initState() {
     _authBloc = AuthBlocUser();
     super.initState();
@@ -45,8 +39,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: screenHeight * 0.005,
+            const SizedBox(
+              height: 10,
             ),
             SizedBox(
               child: AppTextBox(
@@ -102,7 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               obscureText: true,
               textInputAction: TextInputAction.done,
             ),
-            SizedBox(
+            const SizedBox(
               height: 7,
             ),
             Center(
@@ -112,16 +106,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     _validate();
-
-
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: primaryColor,
+                    backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
                   ),
-                  child: Text("Continue"),
+                  child: const Text("Continue"),
                 ),
               ),
             ),
@@ -132,8 +124,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   _validate() async {
-
-
     var name = _name.controller.text;
     var nickname = _nickname.controller.text;
     var email = _emailid.controller.text;
@@ -156,9 +146,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return await _signUp(  name,
           nickname,phone,email,password,confirmPassword
           );
-
-
-
   }
   Future _signUp(
       String name,
@@ -181,19 +168,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     try {
       UserSignInDetails response =
-      await _authBloc!.userRegistration(_name.controller.text,_nickname.controller.text,_mobileno.controller.text,_emailid.controller.text,_password.controller.text,_confirmpassword.controller.text);
+      await _authBloc.userRegistration(_name.controller.text,_nickname.controller.text,_mobileno.controller.text,_emailid.controller.text,_password.controller.text,_confirmpassword.controller.text);
       Get.back();
       if (response.success!) {
-        print("gth->${response}");
+        debugPrint("gth->$response");
         await SharedPrefs.logIn(response);
         // if (widget.isDoctor) {
         //   //todo get to doctor module
         // } else {
-          Get.offAll(() => RegisterationScreen());
+          Get.offAll(() => const RegisterationScreen());
           //todo get to user module
        // }
       } else {
-        toastMessage('${response.message!}');
+        toastMessage(response.message!);
       }
     } catch (e, s) {
       Completer().completeError(e, s);

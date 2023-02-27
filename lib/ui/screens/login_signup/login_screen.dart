@@ -1,20 +1,12 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:io';
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:new_application/Auth_Bloc/auth_bloc.dart';
-
 import 'package:new_application/modelclass/user_signin_model.dart';
-import 'package:new_application/repository/commoninfo_repository.dart';
 import 'package:new_application/ui/screens/home.dart';
 import 'package:new_application/ui/screens/login_signup/signup_form_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
@@ -22,8 +14,6 @@ import 'package:new_application/utils/form_validate.dart';
 import 'package:new_application/utils/sharedpref.dart';
 import 'package:new_application/widgets/app_dialogs.dart';
 import 'package:new_application/widgets/app_text_field.dart';
-
-import '../welcome screen.dart';
 import 'first_registeration_screen.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -40,9 +30,9 @@ class _LogInScreenState extends State<LogInScreen> {
 
   bool signUp = false;
   FormatAndValidate formatAndValidate = FormatAndValidate();
-  AuthBlocUser _loginuser = AuthBlocUser();
-  TextFieldControl _email = TextFieldControl();
-  TextFieldControl _password = TextFieldControl();
+  final AuthBlocUser _loginuser = AuthBlocUser();
+  final TextFieldControl _email = TextFieldControl();
+  final TextFieldControl _password = TextFieldControl();
 
   @override
 
@@ -64,20 +54,20 @@ class _LogInScreenState extends State<LogInScreen> {
                       "assets/images/logo.png",
                     ),)
               ),
-              signUp ? Align(
+              signUp ? const Align(
                 alignment: Alignment.center,
                 child: Text(
                   "Register Now",
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
-              ) : Align(
+              ) : const Align(
                 alignment: Alignment.center,
                 child: Text(
                   "Welcome  back",
                   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -92,17 +82,17 @@ class _LogInScreenState extends State<LogInScreen> {
                           setState(() {});
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: !signUp ? secondaryColor : Colors.grey,
+                          backgroundColor: !signUp ? secondaryColor : Colors.grey,
                           shape: RoundedRectangleBorder(
                               //to set border radius to button
                               borderRadius: BorderRadius.circular(25)),
                         ),
-                        child: Text(
+                        child: const Text(
                           "Login",
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         )),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   SizedBox(
@@ -110,17 +100,16 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 35,
                     child: ElevatedButton(
                       onPressed: () {
-
                         signUp = true;
                         setState(() {});
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: !signUp ? Colors.grey : secondaryColor,
+                        backgroundColor: !signUp ? Colors.grey : secondaryColor,
                         shape: RoundedRectangleBorder(
                             //to set border radius to button
                             borderRadius: BorderRadius.circular(25)),
                       ),
-                      child: Text(
+                      child: const Text(
                         "Register",
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
@@ -128,10 +117,10 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-              signUp ? SignUpScreen() : _logInScreen(),
+              signUp ? const SignUpScreen() : _logInScreen(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   SizedBox(
                     width: 80,
                     child: Divider(
@@ -161,7 +150,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -169,8 +158,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 30,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: CircleBorder(
+                        backgroundColor: Colors.white,
+                        shape: const CircleBorder(
                           side: BorderSide(
                             color: Colors.grey,
                           ),
@@ -187,8 +176,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 30,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: CircleBorder(
+                        backgroundColor: Colors.white,
+                        shape: const CircleBorder(
                           side: BorderSide(
                             color: Colors.grey,
                           ),
@@ -206,8 +195,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     height: 30,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        shape: CircleBorder(
+                        backgroundColor: Colors.white,
+                        shape: const CircleBorder(
                           side: BorderSide(
                             color: Colors.grey,
                           ),
@@ -244,7 +233,6 @@ class _LogInScreenState extends State<LogInScreen> {
 
       // Getting users credential
       UserCredential result = await auth.signInWithCredential(authCredential);
-      User? user = result.user;
 
       if (result != null) {
         Navigator.pushReplacement(
@@ -259,11 +247,11 @@ class _LogInScreenState extends State<LogInScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Padding(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 20.0,
             right: 20,
             bottom: 10,
@@ -291,7 +279,7 @@ class _LogInScreenState extends State<LogInScreen> {
             textInputAction: TextInputAction.done,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         InkWell(
@@ -306,7 +294,7 @@ class _LogInScreenState extends State<LogInScreen> {
           ),
           onTap: () {},
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         Center(
@@ -316,7 +304,7 @@ class _LogInScreenState extends State<LogInScreen> {
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                primary: primaryColor,
+                backgroundColor: primaryColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(12.0),
                 ),
@@ -367,10 +355,9 @@ class _LogInScreenState extends State<LogInScreen> {
 
       if (response.success!) {
         await SharedPrefs.logIn(response);
-
-        Get.offAll(() => HomeScreen());
+        Get.offAll(() => const HomeScreen());
       } else {
-        toastMessage('${response.message!}');
+        toastMessage(response.message!);
       }
     } catch (e, s) {
       Completer().completeError(e, s);

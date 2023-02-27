@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
@@ -8,13 +6,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:new_application/ui/screens/login_signup/login_screen.dart';
+import 'package:new_application/utils/app_helper.dart';
 import 'package:place_picker/place_picker.dart';
-import 'login_signup/first_registeration_screen.dart';
-import 'package:flutter/material.dart';
-
-import 'package:geocoding/geocoding.dart';
 import 'package:google_api_headers/google_api_headers.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class WelcomeScreen extends StatefulWidget {
   final bool isFromLogout;
@@ -26,8 +20,6 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  @override
-  String? _currentAddress;
   Position? _currentPosition;
 
   Future<bool> _handleLocationPermission() async {
@@ -62,7 +54,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               'Location permissions are permanently denied, we cannot request permissions.')));
       return false;
     }
-
     return true;
   }
 
@@ -83,11 +74,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     await placemarkFromCoordinates(
         _currentPosition!.latitude, _currentPosition!.longitude)
         .then((List<Placemark> placemarks) {
-      Placemark place = placemarks[0];
+      // Placemark place = placemarks[0];
       setState(() {
-        _currentAddress =
-        '${place.street}, ${place.subLocality}, ${place
-            .subAdministrativeArea}, ${place.postalCode}';
       });
     }).catchError((e) {
       debugPrint(e);
@@ -97,14 +85,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-
             child: Image.asset("assets/images/logo.png"),),
-
           ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: primaryColor,),
             onPressed: _getCurrentPosition,
-            child: const Text("Get Started"),
+            child:  const Text("Get Started"),
           )
         ],
       ),
@@ -113,18 +102,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 }
 
 
-
-
 class PickerDemo extends StatefulWidget {
+  const PickerDemo({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => PickerDemoState();
 }
 
 class PickerDemoState extends State<PickerDemo> {
  // String googleApikey = "AIzaSyDSFXeJ_Zuy804HSkWMaK-YGzSzIXYhVJs";
-  GoogleMapController? mapController; //contrller for Google map
+  GoogleMapController? mapController;
   CameraPosition? cameraPosition;
-  LatLng startLocation = LatLng(27.6602292, 85.308027);
+  LatLng startLocation = const LatLng(27.6602292, 85.308027);
   String location = "Search Location";
   @override
   Widget build(BuildContext context) {

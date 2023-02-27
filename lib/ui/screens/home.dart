@@ -1,12 +1,10 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/sharedpref.dart';
+import 'package:badges/badges.dart' as badges;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,113 +15,104 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late GoogleMapController mapController;
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+  // final LatLng _center = const LatLng(45.521563, -122.677433);
+  // void _onMapCreated(GoogleMapController controller) {
+  //   mapController = controller;
+  // }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-
-
     return
-
       Scaffold(
         key: _scaffoldKey,
         appBar:AppBar(
-
           elevation: 4,
           centerTitle: true,
           backgroundColor: primaryColor,
           iconTheme: const IconThemeData(
             color: Colors.white,
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: InkWell(
-                  onTap: (){
-                    //Navigator.push(context,  MaterialPageRoute(builder: (context) => NotificationScreen()));
-                  },
-                  child: Stack(
-                    children: [
-                      Container(
-                          child:
-                          Icon(Icons.notifications_none_rounded,size: 25,color: Colors.white)
-                      ),
-                      Positioned(
-                        right: 0,
-                        child:  Container(
-                          padding: EdgeInsets.all(1),
-                          decoration: new BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          constraints: BoxConstraints(
-                            minWidth: 13,
-                            minHeight: 13,
-                          ),
-
-                        ),),
-                    ],
-                  ),
+            actions: [
+              badges.Badge(
+                position: badges.BadgePosition.topEnd(top: 10, end: 10),
+                badgeStyle: const badges.BadgeStyle(badgeColor: Colors.red,shape: badges.BadgeShape.circle),
+                badgeAnimation: const badges.BadgeAnimation.scale(
+                  disappearanceFadeAnimationDuration: Duration(milliseconds: 300),
+                ),
+                badgeContent: const Text(
+                  "7",
+                  style: TextStyle(color: Colors.white, fontSize: 8),
+                ),
+                child: IconButton(
+                  icon: const Icon(Icons.notifications_none_rounded),
+                  onPressed: () {},
                 ),
               ),
-
             ],
-          ),
         ),
         body: SafeArea(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 38.0,top: 30),
-                child: Text("Book Online",style: TextStyle(fontSize: 20),),
-              ),
-              SizedBox(height: 30
-                ,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 28.0),
-                    child: Container(
-                      height: 100,
-                      width: 100,
-
-                      decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700],),
-                      child: Image.asset("assets/images/Vector.png"),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20,),
+                const Text("Book Online",style: TextStyle(fontSize: 20),),
+                const SizedBox(height: 20,),
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: secondaryColor,),
+                          child: Image.asset("assets/images/Vector.png"),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text("Ride",style: TextStyle(fontSize: 16),)
+                      ],
                     ),
-                  ),
-                  SizedBox(width: 20
-                    ,),
-                  Container(
-                    height: 100,
-                    width: 100,
-
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700],),
-                    child: Image.asset("assets/images/hotel.png"),
-                  ),
-                  SizedBox(width: 20
-                    ,),
-                  Container(
-                    height: 100,
-                    width: 100,
-
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.yellow[700],),
-                    child: Image.asset("assets/images/restaurent.png"),
-                  ),
-                ],
-              )
-            ],
+                    const SizedBox(width: 15),
+                    Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: secondaryColor,),
+                          child: Image.asset("assets/images/hotel.png"),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text("Restaurant",style: TextStyle(fontSize: 16),)
+                      ],
+                    ),
+                    const SizedBox(width: 15,),
+                    Column(
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: secondaryColor,),
+                          child: Image.asset("assets/images/restaurent.png"),
+                        ),
+                        const SizedBox(height: 5),
+                        const Text("Hotel",style: TextStyle(fontSize: 16),)
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20,),
+                const Divider(
+                  color: Colors.black,
+                  height: 1.5,
+                )
+              ],
+            ),
           ),
         ),
         drawer: _drawer(),
@@ -179,34 +168,32 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
   Widget _drawer() {
-
-    return  Drawer(
+    return Drawer(
       backgroundColor: Colors.white,
       child: Container(
         color: Colors.white,
         child: ListView(
           children: [
-            Container(
+            SizedBox(
               height: 100,
               child: DrawerHeader(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                   ),
                   child:
                   Padding(
                     padding: const EdgeInsets.only(left: 260),
-                    child: Container(
-                        child: GestureDetector(
-                            onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //       builder: (context) => DashBoard(
-                              //         UserName1: '',
-                              //       )),
-                              // );
-                            },
-                            child: Icon(CupertinoIcons.clear_circled))),
+                    child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => DashBoard(
+                          //         UserName1: '',
+                          //       )),
+                          // );
+                        },
+                        child: const Icon(CupertinoIcons.clear_circled)),
                   )),
             ),
             ListTile(
@@ -217,12 +204,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/mymatches.png",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
                   onTap: () {
-                    print("hg");
                     // Navigator.push(
                     //   context,
                     //   MaterialPageRoute(builder: (context) => MyMatches(fragmentToShow: 0, pendingamount: '', nopaycount: '',)),
@@ -239,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 4,
             ),
             ListTile(
@@ -250,7 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/myclubs.png",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -281,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/myresults.png",
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -314,7 +300,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     "assets/images/history.png",width: 30,height: 20,
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -338,11 +324,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Row(children: [
-                Padding(
-                    padding: const EdgeInsets.all(5.0),
+                const Padding(
+                    padding: EdgeInsets.all(5.0),
                     child: Icon(Icons.settings,
                         color: Colors.black, size: 22)),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Text(
@@ -363,7 +349,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // });
               },
             ),
-            Divider(color: Colors.grey),
+            const Divider(color: Colors.grey),
             ListTile(
               title: Row(children: [
                 // Padding(
@@ -371,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   child: Image.asset("assets/images/privacy.png",
                 //       color: Colors.black),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -398,12 +384,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
+                const Padding(
+                  padding: EdgeInsets.all(5.0),
                   child:
                   Icon(Icons.call,color: Colors.black,size: 20,),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -437,7 +423,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     color: Colors.black,
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -471,7 +457,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 //     height: 20,
                 //   ),
                 // ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -498,11 +484,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Row(children: [
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
+                const Padding(
+                  padding: EdgeInsets.all(5.0),
                   child: Icon(Icons.logout, color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 GestureDetector(
@@ -512,22 +498,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          content: Text(
+                          content: const Text(
                             'Are you sure want to log out?',
                             style: TextStyle(fontWeight: FontWeight.w500),
                           ),
                           actions: [
                             OutlinedButton(
-                              child: Text('No'),
+                              child: const Text('No'),
                               onPressed: () {
                                // Get.back();
                               },
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             ElevatedButton(
-                              child: Text('Yes'),
+                              child: const Text('Yes'),
                               onPressed: () {
                                 Get.back();
                                 SharedPrefs.logOut();

@@ -1,16 +1,12 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:new_application/modelclass/login_modelclass.dart';
 import 'package:new_application/modelclass/user_signin_model.dart';
 import 'package:new_application/repository/remoteconfig.dart';
 import 'package:new_application/ui/screens/home.dart';
-import 'package:new_application/ui/screens/welcome%20screen.dart';
 import 'package:new_application/widgets/api_provider.dart';
 
 String apiToken = "";
@@ -56,10 +52,6 @@ class AuthRepositoryUser {
 
     return UserSignInDetails.fromJson(response.data);
   }
-
-
-
-
 
   Future<RoleModel> RoleUservehicle(
       String restname,
