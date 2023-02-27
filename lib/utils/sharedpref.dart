@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:new_application/modelclass/user_signin_model.dart';
 import 'package:new_application/utils/user_utils.dart';
@@ -19,7 +20,7 @@ class SharedPrefs {
 
 
   static init() async {
-    print("->${spEmail}");
+    debugPrint("->$spEmail");
     preferences = await SharedPreferences.getInstance();
 
     UserUtils.set(
@@ -43,22 +44,22 @@ class SharedPrefs {
     if (response.users == null) return false;
 
     String token = response.token ?? UserUtils.apiToken;
-    print("object=?${token}");
+    debugPrint("object=?$token");
     User userDetails = response.users!;
-print("=>${userDetails.nickName}");
-    await setString(spToken, '$token');
+    debugPrint("=>${userDetails.nickName}");
+    await setString(spToken, token);
     await setString(spUserId, '${userDetails.id ?? ''}');
-    await setString(spEmail, '${userDetails.email ?? ''}');
-    await setString(spName, '${userDetails.name ?? ''}');
-    await setString(spMobile, '${userDetails.phone ?? ''}');
+    await setString(spEmail, userDetails.email ?? '');
+    await setString(spName, userDetails.name ?? '');
+    await setString(spMobile, userDetails.phone ?? '');
 
 
     UserUtils.set(
       token,
       '${userDetails.id ?? ''}',
-      '${userDetails.name ?? ''}',
-      '${userDetails.email ?? ''}',
-      '${userDetails.phone ?? ''}',);
+      userDetails.name ?? '',
+      userDetails.email ?? '',
+      userDetails.phone ?? '',);
     return true;
   }
 
@@ -66,7 +67,7 @@ print("=>${userDetails.nickName}");
     await preferences.clear();
     UserUtils.set('', '', '', '', '', );
 
-    Get.offAll(() => WelcomeScreen(isFromLogout: true));
+    Get.offAll(() => const WelcomeScreen(isFromLogout: true));
     return true;
   }
 

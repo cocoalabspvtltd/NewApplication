@@ -2,10 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:new_application/utils/user_utils.dart';
 import 'package:new_application/widgets/apiinterceptor.dart';
 
-import '../modelclass/regioster_model.dart';
-
-
-
 class ApiProvider {
   Dio? _dio;
 
@@ -17,7 +13,7 @@ class ApiProvider {
 
   ApiProvider() {
     BaseOptions options;
-    options = new BaseOptions(
+    options = BaseOptions(
       baseUrl: baseUrl,
 
       // receiveTimeout: 10000,
