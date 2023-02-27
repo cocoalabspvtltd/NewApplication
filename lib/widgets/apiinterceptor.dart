@@ -65,12 +65,12 @@ class ApiInterceptor extends Interceptor {
           endingIndex = responseAsString.length;
         }
         debugPrint(
-            '''${responseAsString.substring(i * maxCharactersPerLine, endingIndex)}''');
+            responseAsString.substring(i * maxCharactersPerLine, endingIndex));
       }
     } else {
-      print('''${response.data}''');
+      debugPrint('''${response.data}''');
     }
-    print("************** Response End ************************");
+    debugPrint("************** Response End ************************");
 
     // print('status code: ${response.statusCode}');
     // print('success response: ${response.data}');
@@ -80,19 +80,19 @@ class ApiInterceptor extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print("#################### Error Begin #########################");
+    debugPrint("#################### Error Begin #########################");
     if (err.response != null) {
-      print('status code: ${err.response!.statusCode}');
-      print('error response: ${err.response!.data.toString()}');
+      debugPrint('status code: ${err.response!.statusCode}');
+      debugPrint('error response: ${err.response!.data.toString()}');
       Fluttertoast.showToast(msg:err.response!.data['message']);
 
       if (err.response!.statusCode == 401) {
         SharedPrefs.logOut();
       }
     } else {
-      print('${err.toString()}');
+      debugPrint(err.toString());
     }
-    print("#################### Error End #########################");
+    debugPrint("#################### Error End #########################");
 
     super.onError(err, handler);
   }

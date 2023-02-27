@@ -3,6 +3,8 @@ import 'package:new_application/utils/custom_loader/dot_type.dart';
 import 'package:new_application/utils/custom_loader/linear_loader.dart';
 
 class CommonApiLoader extends StatelessWidget {
+  const CommonApiLoader({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Opacity(
@@ -17,8 +19,8 @@ class CommonApiLoader extends StatelessWidget {
           dotTwoColor: Colors.orange,
           dotThreeColor: Colors.green,
           dotType: DotType.circle,
-          dotIcon: Icon(Icons.adjust),
-          duration: Duration(seconds: 1),
+          dotIcon: const Icon(Icons.adjust),
+          duration: const Duration(seconds: 1),
         ),
       ),
     );

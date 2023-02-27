@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:new_application/utils/app_helper.dart';
+
 
 class AppTextBox extends StatefulWidget {
   final TextFieldControl? textFieldControl;
@@ -74,11 +74,11 @@ class _AppTextBoxState extends State<AppTextBox> {
     }
 
     return Container(
-        margin: EdgeInsets.symmetric(vertical: 6),
+        margin: const EdgeInsets.symmetric(vertical: 6),
         child: TextField(
           enabled: widget.enabled,
           obscureText: obscureText ? b : false,
-          scrollPhysics: BouncingScrollPhysics(),
+          scrollPhysics: const BouncingScrollPhysics(),
           controller: textFieldControl.controller,
           focusNode: textFieldControl.focusNode,
           keyboardType: keyboardType,
@@ -90,29 +90,29 @@ class _AppTextBoxState extends State<AppTextBox> {
           textInputAction: textInputAction,
           onChanged: widget.onChanged,
           decoration: InputDecoration(
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
-            disabledBorder: OutlineInputBorder(
+            disabledBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
-            focusedErrorBorder: OutlineInputBorder(
+            focusedErrorBorder: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
                 borderSide: BorderSide(color: Colors.grey)),
             hintText: hintText,
-            hintStyle: TextStyle(fontSize: 14, color: Colors.grey),
+            hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
             prefixIcon: widget.prefixIcon,
             suffixIcon: suffixIcon,
-            contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+            contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
           ),
         ));
   }

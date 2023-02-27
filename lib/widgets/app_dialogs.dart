@@ -14,7 +14,7 @@ class AppDialogs {
         child: Align(
           alignment: alignment,
           child: Container(
-            margin: EdgeInsets.all(12),
+            margin: const EdgeInsets.all(12),
             height: 200,
             child: Material(
               borderRadius: BorderRadius.circular(22),
@@ -27,8 +27,8 @@ class AppDialogs {
                       ? Align(
                     alignment: Alignment.topRight,
                     child: GestureDetector(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
                         child: Icon(
                           Icons.cancel,
                           color: Colors.black12,
@@ -52,7 +52,7 @@ class AppDialogs {
                             width: 70,
                             child: Stack(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 70,
                                   width: 70,
                                   child: CircularProgressIndicator(
@@ -73,10 +73,10 @@ class AppDialogs {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 18,
                         ),
-                        Text(
+                        const Text(
                           'Please wait..',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.indigo, fontSize: 15),
@@ -101,7 +101,7 @@ class AppDialogs {
       Align(
         alignment: Alignment.center,
         child: Container(
-          margin: EdgeInsets.all(12),
+          margin: const EdgeInsets.all(12),
           child: Material(
             borderRadius: BorderRadius.circular(12),
             child:                 Padding(
@@ -114,17 +114,17 @@ class AppDialogs {
                   Text(
                     message,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 15),
+                    style: const TextStyle(fontSize: 15),
                   ),
-                  SizedBox(height: 8,),
+                  const SizedBox(height: 8,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: ElevatedButton(
                       onPressed: () {
                         Get.back();
                       },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
+                      child: const Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: Text('Ok'),
                       ),
                       style: ElevatedButton.styleFrom(
