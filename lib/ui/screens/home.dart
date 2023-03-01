@@ -89,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         InkWell(
                           onTap: (){
-                            Get.to(() => const StartRideScreen());
+                            Get.to(() =>  StartRideScreen());
                           },
                           child: Container(
                             height: 100,
