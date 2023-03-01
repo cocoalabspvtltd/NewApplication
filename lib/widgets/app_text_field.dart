@@ -74,6 +74,10 @@ class _AppTextBoxState extends State<AppTextBox> {
     }
 
     return Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius:  BorderRadius.all(Radius.circular(10)),
+        ),
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: TextField(
           enabled: widget.enabled,
