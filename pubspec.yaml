@@ -63,6 +63,7 @@ dependencies:
   google_maps_webservice: ^0.0.20-nullsafety.5
   shared_preferences: ^2.0.17
   badges: ^3.0.2
+  url_launcher: ^6.1.10
 
 
 
