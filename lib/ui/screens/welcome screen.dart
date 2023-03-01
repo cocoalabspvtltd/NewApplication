@@ -166,7 +166,6 @@ class PickerDemoState extends State<PickerDemo> {
                             debugPrint('$err');
                           }
                       );
-
                       if(place != null){
                         setState(() {
                           location = place.description.toString();

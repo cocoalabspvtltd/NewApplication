@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:new_application/ui/screens/ride_taxy/start_ride_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/sharedpref.dart';
 import 'package:badges/badges.dart' as badges;
@@ -22,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
+
     return
       Scaffold(
         key: _scaffoldKey,
@@ -53,7 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20,),
                 const Text("Book Online",style: TextStyle(fontSize: 20),),
@@ -62,13 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Column(
                       children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: secondaryColor,),
-                          child: Image.asset("assets/images/Vector.png"),
+                        InkWell(
+                          onTap: (){
+                            Get.to(() => const StartRideScreen());
+                          },
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: secondaryColor,),
+                            child: Image.asset("assets/images/Vector.png"),
+                          ),
                         ),
                         const SizedBox(height: 5),
                         const Text("Ride",style: TextStyle(fontSize: 16),)
@@ -110,7 +118,115 @@ class _HomeScreenState extends State<HomeScreen> {
                 const Divider(
                   color: Colors.black,
                   height: 1.5,
-                )
+                ),
+                const SizedBox(height: 20,),
+                SizedBox(
+                  height: 75,
+                  child: Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8,bottom: 8),
+                      child: ListTile(
+                        leading: Container(
+                          height: 90,
+                          decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(8),),
+                            child: Image.asset("assets/images/Vector.png",color: Colors.black)),
+                        title: const Text(
+                          'My Taxi',
+                          textScaleFactor: 1.5,
+                          style: TextStyle(color: Colors.black,fontSize: 15),
+                        ),
+                        trailing: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          onPressed: (){},child: const Text("View"),),
+                        selected: true,
+                        onTap: () {
+                          setState(() {
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10,),
+                SizedBox(
+                  height: 75,
+                  child: Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8,bottom: 8),
+                      child: ListTile(
+                        leading: Container(
+                            height: 90,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(8),),
+                            child: Image.asset("assets/images/hotel.png",color: Colors.black,)),
+                        title: const Text(
+                          'My Restaurant',
+                          textScaleFactor: 1.5,
+                          style: TextStyle(color: Colors.black,fontSize: 15),
+                        ),
+                        trailing: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          onPressed: (){},child: const Text("View"),),
+                        selected: true,
+                        onTap: () {
+                          setState(() {
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10,),
+                SizedBox(
+                  height: 75,
+                  child: Card(
+                    elevation: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8,bottom: 8),
+                      child: ListTile(
+                        leading: Container(
+                            height: 90,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(8),),
+                            child: Image.asset("assets/images/restaurent.png",color: Colors.black,)),
+                        title: const Text(
+                          'My Hotel',
+                          textScaleFactor: 1.5,
+                          style: TextStyle(color: Colors.black,fontSize: 15),
+                        ),
+                        trailing: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                          onPressed: (){},child: const Text("View"),),
+                        selected: true,
+                        onTap: () {
+                          setState(() {
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+
               ],
             ),
           ),

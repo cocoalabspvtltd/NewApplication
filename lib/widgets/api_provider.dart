@@ -7,7 +7,7 @@ class ApiProvider {
 
   //todo change to live base url
 
-  static String baseUrl = 'https://d808-117-193-33-126.ngrok.io/';
+  static String baseUrl = 'https://2a5d-117-201-140-12.ngrok.io/';
 
   //static String baseUrl = 'https://9a6a-117-201-131-18.ngrok.io/';
 
