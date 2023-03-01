@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:new_application/ui/screens/ride_taxy/ride_sharing_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/widgets/app_text_field.dart';
 
@@ -31,7 +34,7 @@ class _StartRideScreenState extends State<StartRideScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             SizedBox(
-              height: 200,
+              height: 210,
               width: 360,
               child: Card(
                   shape: RoundedRectangleBorder(
@@ -85,7 +88,9 @@ class _StartRideScreenState extends State<StartRideScreen> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10)),
                             ),
-                            onPressed: (){}, child: const Text("Search",style: TextStyle(fontSize: 18),)),
+                            onPressed: (){
+                              Get.to(() => const RidesharingScreen());
+                            }, child: const Text("Search",style: TextStyle(fontSize: 18),)),
                       ),
                     ],
                   ),

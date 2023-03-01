@@ -1,11 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:new_application/ui/screens/home.dart';
 import 'package:new_application/ui/screens/login_signup/login_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
+import 'package:new_application/utils/sharedpref.dart';
+import 'package:new_application/utils/user_utils.dart';
 import 'package:place_picker/place_picker.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 
@@ -79,6 +85,33 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     }).catchError((e) {
       debugPrint(e);
     });
+  }
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      // setScreenDimensions(context);
+
+      setState(() {});
+
+      if (UserUtils.apiToken.isEmpty) await SharedPrefs.init();
+      await SharedPrefs.init();
+
+      Future.delayed(Duration(milliseconds: 1400), () {
+        if (UserUtils.apiToken != '') {
+
+
+          return Get.offAll(() => HomeScreen());
+
+        } else {
+          return Get.offAll(() => LogInScreen());
+        }
+      });
+    });
+    Timer(
+        Duration(seconds:4),
+            () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => LogInScreen())));
   }
   @override
   Widget build(BuildContext context) {
