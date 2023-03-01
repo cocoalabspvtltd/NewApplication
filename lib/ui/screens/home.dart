@@ -6,6 +6,7 @@ import 'package:new_application/ui/screens/ride_taxy/start_ride_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/sharedpref.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:new_application/widgets/app_text_field.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,36 +22,57 @@ class _HomeScreenState extends State<HomeScreen> {
   //   mapController = controller;
   // }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  final TextFieldControl _searchcontroller = TextFieldControl();
   @override
   Widget build(BuildContext context) {
-
     return
       Scaffold(
         key: _scaffoldKey,
         appBar:AppBar(
+          toolbarHeight: 110,
           elevation: 4,
           centerTitle: true,
           backgroundColor: primaryColor,
           iconTheme: const IconThemeData(
             color: Colors.white,
           ),
+            leading: Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: IconButton(onPressed: (){
+                _drawer();
+              }, icon: const Icon(Icons.menu)),
+            ),
             actions: [
-              badges.Badge(
-                position: badges.BadgePosition.topEnd(top: 10, end: 10),
-                badgeStyle: const badges.BadgeStyle(badgeColor: Colors.red,shape: badges.BadgeShape.circle),
-                badgeAnimation: const badges.BadgeAnimation.scale(
-                  disappearanceFadeAnimationDuration: Duration(milliseconds: 300),
-                ),
-                badgeContent: const Text(
-                  "7",
-                  style: TextStyle(color: Colors.white, fontSize: 8),
-                ),
-                child: IconButton(
-                  icon: const Icon(Icons.notifications_none_rounded),
-                  onPressed: () {},
+              Padding(
+                padding: const EdgeInsets.only(top: 8,bottom: 8),
+                child: badges.Badge(
+                  position: badges.BadgePosition.topEnd(top: 10, end: 10),
+                  badgeStyle: const badges.BadgeStyle(badgeColor: Colors.red,shape: badges.BadgeShape.circle),
+                  badgeAnimation: const badges.BadgeAnimation.scale(
+                    disappearanceFadeAnimationDuration: Duration(milliseconds: 300),
+                  ),
+                  badgeContent: const Text(
+                    "7",
+                    style: TextStyle(color: Colors.white, fontSize: 8),
+                  ),
+                  child: IconButton(
+                    icon: const Icon(Icons.notifications_none_rounded),
+                    onPressed: () {},
+                  ),
                 ),
               ),
             ],
+          title: Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: SizedBox(
+              height: 50,
+              child: AppTextBox(
+                textFieldControl: _searchcontroller,
+                hintText: 'Search location',
+                keyboardType: TextInputType.text,
+              ),
+            ),
+          ),
         ),
         body: SafeArea(
           child: Padding(
@@ -58,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20,),
+                const SizedBox(height: 8,),
                 const Text("Book Online",style: TextStyle(fontSize: 20),),
                 const SizedBox(height: 20,),
                 Row(
@@ -231,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        drawer: _drawer(),
+        // drawer: _drawer(),
         // bottomNavigationBar: BottomNavigationBar(
         //   backgroundColor: Colors.grey[50],
         //   type: BottomNavigationBarType.fixed,
