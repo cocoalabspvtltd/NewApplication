@@ -34,8 +34,7 @@ class _StartRideScreenState extends State<StartRideScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             SizedBox(
-              height: 210,
-              width: 360,
+              height: MediaQuery.of(context).size.height * 0.27,
               child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
