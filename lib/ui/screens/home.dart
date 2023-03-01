@@ -17,10 +17,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late GoogleMapController mapController;
-  // final LatLng _center = const LatLng(45.521563, -122.677433);
-  // void _onMapCreated(GoogleMapController controller) {
-  //   mapController = controller;
-  // }
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
   final TextFieldControl _searchcontroller = TextFieldControl();
   @override
