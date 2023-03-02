@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:new_application/ui/screens/restaurant/start_restaurant_screen.dart';
 import 'package:new_application/ui/screens/ride_taxy/start_ride_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/utils/sharedpref.dart';
@@ -103,13 +104,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(width: 15),
                     Column(
                       children: [
-                        Container(
-                          height: 100,
-                          width: 100,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: secondaryColor,),
-                          child: Image.asset("assets/images/hotel.png"),
+                        InkWell(
+                          onTap: (){
+                            Get.to(() => const StartRestaurantScreen());
+                          },
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: secondaryColor,),
+                            child: Image.asset("assets/images/hotel.png"),
+                          ),
                         ),
                         const SizedBox(height: 5),
                         const Text("Restaurant",style: TextStyle(fontSize: 16),)

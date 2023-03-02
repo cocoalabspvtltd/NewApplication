@@ -108,7 +108,7 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                               child: ListTile(
                                 isThreeLine: true,
                                 title: Text('Name :  ',
-                                    style: TextStyle(fontSize: 16)),
+                                    style: TextStyle(fontSize: 18)),
                                 subtitle: Padding(
                                   padding: const EdgeInsets.only(top: 8),
                                   child: Column(
@@ -117,13 +117,13 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                       const Text(
                                         'Distance :   ',
                                         style: TextStyle(
-                                            color: Colors.black, fontSize: 16),
+                                            color: Colors.black, fontSize: 18),
                                       ),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           CircleAvatar(
-                                            radius: 20,
+                                            radius: 16,
                                             backgroundColor: secondaryColor,
                                             child: IconButton(
                                               onPressed: () {
@@ -132,12 +132,12 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                                 print("jlk");
                                               },
                                               icon: const Icon(Icons.call,
-                                                color: Colors.black,size: 20,),
+                                                color: Colors.black,size: 15,),
                                             ),
                                           ),
                                           SizedBox(width: 7,),
                                           CircleAvatar(
-                                            radius: 20,
+                                            radius: 16,
                                             backgroundColor: secondaryColor,
                                             child: IconButton(
                                               onPressed: () {
@@ -145,7 +145,7 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                                 launchUrl(sms);
                                               },
                                               icon: Icon(Icons.message,
-                                                color: Colors.black,size: 20,),
+                                                color: Colors.black,size: 15,),
                                             ),
                                           ),
                                         ],
@@ -196,7 +196,7 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                               child: ListTile(
                                 isThreeLine: true,
                                 title: Text('Name :  ',
-                                    style: TextStyle(fontSize: 16)),
+                                    style: TextStyle(fontSize: 18)),
                                 subtitle: Padding(
                                   padding: const EdgeInsets.only(top: 8),
                                   child: Column(
@@ -205,27 +205,26 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                       const Text(
                                         'Distance :   ',
                                         style: TextStyle(
-                                            color: Colors.black, fontSize: 16),
+                                            color: Colors.black, fontSize: 18),
                                       ),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           CircleAvatar(
-                                            radius: 20,
+                                            radius: 16,
                                             backgroundColor: secondaryColor,
                                             child: IconButton(
                                               onPressed: () {
                                                 Uri phoneno = Uri.parse('tel:+917560911122');
                                                 launchUrl(phoneno);
-                                                print("jlk");
                                               },
                                               icon: Icon(Icons.call,
-                                                color: Colors.black,size: 20,),
+                                                color: Colors.black,size: 15,),
                                             ),
                                           ),
                                           SizedBox(width: 7,),
                                           CircleAvatar(
-                                            radius: 20,
+                                            radius: 16,
                                             backgroundColor: secondaryColor,
                                             child: IconButton(
                                               onPressed: () {
@@ -233,7 +232,7 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                                 launchUrl(sms);
                                               },
                                               icon: Icon(Icons.message,
-                                                color: Colors.black,size: 20,),
+                                                color: Colors.black,size: 15,),
                                             ),
                                           ),
                                         ],
