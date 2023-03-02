@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_application/ui/screens/ride_taxy/drivers_list_screen.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -54,9 +56,9 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                             title: Row(
                               children: [
                                 Text('Name :  ',
-                                    style: TextStyle(fontSize: 16)),
+                                    style: TextStyle(fontSize: 18)),
                                 Spacer(),
-                                IconButton(onPressed: (){}, icon: Icon(Icons.close,size: 20,)),
+                                IconButton(onPressed: (){}, icon: Icon(Icons.close,size: 20,color: Colors.black,)),
                               ],
                             ),
                             subtitle: Column(
@@ -65,13 +67,13 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                                 const Text(
                                   'Distance :   ',
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16),
+                                      color: Colors.black, fontSize: 18),
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     CircleAvatar(
-                                      radius: 20,
+                                      radius: 16,
                                       backgroundColor: secondaryColor,
                                       child: IconButton(
                                         onPressed: () {
@@ -80,12 +82,12 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                                           print("jlk");
                                         },
                                         icon: const Icon(Icons.call,
-                                          color: Colors.black,size: 20,),
+                                          color: Colors.black,size: 15,),
                                       ),
                                     ),
                                     SizedBox(width: 7,),
                                     CircleAvatar(
-                                      radius: 20,
+                                      radius: 16,
                                       backgroundColor: secondaryColor,
                                       child: IconButton(
                                         onPressed: () {
@@ -93,7 +95,7 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                                           launchUrl(sms);
                                         },
                                         icon: Icon(Icons.message,
-                                          color: Colors.black,size: 20,),
+                                          color: Colors.black,size: 15,),
                                       ),
                                     ),
                                   ],
@@ -113,6 +115,7 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
         backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         onPressed: () {
+          Get.to(() => const DriversListScreen());
         },
         label: Text('Add Driver'),
       )
