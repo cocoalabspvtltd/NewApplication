@@ -150,7 +150,7 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                               children: [
                                 Image.asset("assets/images/RestaurantExm.png"),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.only(top: 8,left: 8,right: 8),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
@@ -161,7 +161,7 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                 padding: const EdgeInsets.only(top: 5,left: 8,right: 8,bottom: 8),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
