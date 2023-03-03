@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:new_application/ui/screens/restaurant/restaurent_list_details.dart';
 import 'package:new_application/utils/app_helper.dart';
 import 'package:new_application/widgets/app_text_field.dart';
 
@@ -132,42 +134,47 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int i) {
-                    return Card(
-                        elevation: 1,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(7))),
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 4),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset("assets/images/RestaurantExm.png"),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text("Restuarant Name"),
-                                    Spacer(),
-                                    Text("Distance")
-                                  ],
+                    return GestureDetector(
+                      onTap: (){
+                        Get.to(() => const RestaurentDetailsScreen());
+                      },
+                      child: Card(
+                          elevation: 1,
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(7))),
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 4),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset("assets/images/RestaurantExm.png"),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("Restuarant Name"),
+                                      Spacer(),
+                                      Text("Distance")
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text("Address"),
-                                    Spacer(),
-                                    Text("20% off on every order")
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
-                        ));
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("Address"),
+                                      Spacer(),
+                                      Text("20% off on every order")
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )
+                          )),
+                    );
                   },
                 ),
               ],
