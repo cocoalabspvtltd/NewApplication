@@ -95,11 +95,11 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 Row(
                   children: [
-                    Text("Restuarants on\n Your way",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
-                    Spacer(),
+                    const Text("Restuarants on\n Your way",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+                    const Spacer(),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
@@ -113,7 +113,7 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                         onPressed: () {
                         },
                         child: Row(
-                          children: [
+                          children: const [
                             Text(
                               "Filter",
                               style: TextStyle(fontSize: 16, color: Colors.black),
@@ -123,14 +123,14 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                         )),
                   ],
                 ),
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
                 ListView.separated(
                   separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
+                    return const SizedBox(
                       height: 4,
                     );
                   },
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int i) {
@@ -140,7 +140,7 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                       },
                       child: Card(
                           elevation: 1,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                               BorderRadius.all(Radius.circular(7))),
                           child: Padding(
@@ -153,7 +153,7 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                                   padding: const EdgeInsets.only(top: 8,left: 8,right: 8),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Restuarant Name"),
                                       Spacer(),
                                       Text("Distance")
@@ -164,7 +164,7 @@ class _ResturantListScreenState extends State<ResturantListScreen> {
                                  padding: const EdgeInsets.only(top: 5,left: 8,right: 8,bottom: 8),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text("Address"),
                                       Spacer(),
                                       Text("20% off on every order")

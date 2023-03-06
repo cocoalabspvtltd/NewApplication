@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:new_application/utils/app_helper.dart';
 
 class RestaurentDetailsScreen extends StatefulWidget {
@@ -26,7 +24,7 @@ class _RestaurentDetailsScreenState extends State<RestaurentDetailsScreen> {
           color: Colors.white, //change your color here
         ),
         backgroundColor: primaryColor,
-        title: Text(
+        title: const Text(
           "Restaurant",
           style: TextStyle(color: Colors.white),
         ),
@@ -40,13 +38,13 @@ class _RestaurentDetailsScreenState extends State<RestaurentDetailsScreen> {
               "assets/images/RestaurantExm.png",
               width: MediaQuery.of(context).size.width,
             ),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.only(
                   right: 120,
                 ),
                 child: Text("ABC Restaurent",
                     style: TextStyle(color: Colors.black, fontSize: 27))),
-            Padding(
+            const Padding(
                 padding: EdgeInsets.only(left: 40, top: 10),
                 child: Text("ABC Restaurent address koratty 686021",
                     style: TextStyle(color: Colors.black, fontSize: 20))),
@@ -55,7 +53,7 @@ class _RestaurentDetailsScreenState extends State<RestaurentDetailsScreen> {
                 pageSnapping: true,
                 itemBuilder: (context,pagePosition){
                   return Container(
-                      margin: EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(10),
                       child: Image.network(imageList[pagePosition]));
                 })
 

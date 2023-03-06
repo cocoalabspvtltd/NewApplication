@@ -42,17 +42,17 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                 const Text("Location where you need\naccommodation",style: TextStyle(
                   fontWeight: FontWeight.bold,fontSize: 20
                 ),),
-                SizedBox(height: 6,),
+                const SizedBox(height: 6,),
                 AppTextBox(
                   textFieldControl: _searchcontroller,
                   hintText: 'Search location',
                   keyboardType: TextInputType.text,
-                  prefixIcon: Icon(Icons.search),
+                  prefixIcon: const Icon(Icons.search),
                 ),
                 Row(
                   children: [
-                    Text("Number of days/nights",style: TextStyle(fontSize: 17),),
-                    Spacer(),
+                    const Text("Number of days/nights",style: TextStyle(fontSize: 17),),
+                    const Spacer(),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.23,
                       child: AppTextBox(
@@ -63,16 +63,16 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                     ),
                   ],
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                 ),
                 Row(
                   children: [
-                    Text("Budget per\nday/night",style: TextStyle(fontSize: 17),),
-                    SizedBox(width: 80,),
+                    const Text("Budget per\nday/night",style: TextStyle(fontSize: 17),),
+                    const SizedBox(width: 80,),
                     Column(
                       children: [
-                        Text("Min"),
+                        const Text("Min"),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.23,
                           child: AppTextBox(
@@ -83,10 +83,10 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(width: 20,),
+                    const SizedBox(width: 20,),
                     Column(
                       children: [
-                        Text("Max"),
+                        const Text("Max"),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.23,
                           child: AppTextBox(
@@ -99,13 +99,13 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                     ),
                   ],
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                 ),
                 Row(
                   children: [
-                    Text("Chech in time",style: TextStyle(fontSize: 17),),
-                    Spacer(),
+                    const Text("Chech in time",style: TextStyle(fontSize: 17),),
+                    const Spacer(),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: AppTextBox(
@@ -116,7 +116,7 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 6,),
+                const SizedBox(height: 6,),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.05,
@@ -129,7 +129,7 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                       onPressed: (){
                       }, child: const Text("Confirm",style: TextStyle(fontSize: 18),)),
                 ),
-                Divider(
+                const Divider(
                   color: Colors.black,
                 ),
                 Align(
@@ -149,7 +149,7 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                         onPressed: () {
                         },
                         child: Row(
-                          children: [
+                          children:  const [
                             Text(
                               "Filter",
                               style: TextStyle(fontSize: 16, color: Colors.black),
@@ -161,11 +161,11 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                 ),
                 ListView.separated(
                   separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
+                    return const SizedBox(
                       height: 4,
                     );
                   },
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int i) {
@@ -175,7 +175,7 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                       },
                       child: Card(
                           elevation: 1,
-                          shape: RoundedRectangleBorder(
+                          shape: const RoundedRectangleBorder(
                               borderRadius:
                               BorderRadius.all(Radius.circular(7))),
                           child: Padding(
@@ -188,7 +188,7 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                                     padding: const EdgeInsets.only(top: 8,left: 8,right: 8),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
+                                      children: const [
                                         Text("Hotel Name"),
                                         Spacer(),
                                         Text("Price")
@@ -199,7 +199,7 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                                     padding: const EdgeInsets.only(top: 5,left: 8,right: 8,bottom: 8),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
+                                      children: const [
                                         Text("Type"),
                                         Spacer(),
                                         Text("Per day/night")
@@ -212,7 +212,6 @@ class _StartHotelScreenState extends State<StartHotelScreen> {
                     );
                   },
                 ),
-
               ],
             ),
           ),

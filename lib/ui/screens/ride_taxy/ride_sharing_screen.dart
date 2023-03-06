@@ -66,48 +66,48 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                           onPressed: () {
                             Get.to(() => const MyPoolScreen());
                           },
-                          child: Text(
+                          child: const Text(
                             "My pool",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           )),
                     )
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 const Text(
                   "Users on this route",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.65,
                   decoration: BoxDecoration(
                     borderRadius:
-                    BorderRadius.all(Radius.circular(7)),
+                    const BorderRadius.all(Radius.circular(7)),
                       border: Border.all(color: Colors.black)
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(
+                        return const SizedBox(
                           height: 4,
                         );
                       },
-                      physics: ClampingScrollPhysics(),
+                      physics: const ClampingScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int i) {
                         return Card(
                             elevation: 1,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7))),
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8,bottom: 8),
                               child: ListTile(
                                 isThreeLine: true,
-                                title: Text('Name :  ',
+                                title: const Text('Name :  ',
                                     style: TextStyle(fontSize: 18)),
                                 subtitle: Padding(
                                   padding: const EdgeInsets.only(top: 8),
@@ -129,13 +129,12 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                               onPressed: () {
                                                 Uri phoneno = Uri.parse('tel:+917560911122');
                                                 launchUrl(phoneno);
-                                                print("jlk");
                                               },
                                               icon: const Icon(Icons.call,
                                                 color: Colors.black,size: 15,),
                                             ),
                                           ),
-                                          SizedBox(width: 7,),
+                                          const SizedBox(width: 7,),
                                           CircleAvatar(
                                             radius: 16,
                                             backgroundColor: secondaryColor,
@@ -144,7 +143,7 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                                 var sms = Uri.parse("sms:+917560911122");
                                                 launchUrl(sms);
                                               },
-                                              icon: Icon(Icons.message,
+                                              icon: const Icon(Icons.message,
                                                 color: Colors.black,size: 15,),
                                             ),
                                           ),
@@ -159,43 +158,43 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 const Text(
                   "Drivers on this route",
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.65,
                   decoration: BoxDecoration(
                       borderRadius:
-                      BorderRadius.all(Radius.circular(7)),
+                      const BorderRadius.all(Radius.circular(7)),
                       border: Border.all(color: Colors.black)
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListView.separated(
                       separatorBuilder: (BuildContext context, int index) {
-                        return SizedBox(
+                        return const SizedBox(
                           height: 4,
                         );
                       },
-                      physics: ClampingScrollPhysics(),
+                      physics: const ClampingScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 5,
                       itemBuilder: (BuildContext context, int i) {
                         return Card(
                             elevation: 1,
-                            shape: RoundedRectangleBorder(
+                            shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(7))),
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8,bottom: 8),
                               child: ListTile(
                                 isThreeLine: true,
-                                title: Text('Name :  ',
+                                title: const Text('Name :  ',
                                     style: TextStyle(fontSize: 18)),
                                 subtitle: Padding(
                                   padding: const EdgeInsets.only(top: 8),
@@ -218,11 +217,11 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                                 Uri phoneno = Uri.parse('tel:+917560911122');
                                                 launchUrl(phoneno);
                                               },
-                                              icon: Icon(Icons.call,
+                                              icon: const Icon(Icons.call,
                                                 color: Colors.black,size: 15,),
                                             ),
                                           ),
-                                          SizedBox(width: 7,),
+                                          const SizedBox(width: 7,),
                                           CircleAvatar(
                                             radius: 16,
                                             backgroundColor: secondaryColor,
@@ -231,7 +230,7 @@ class _RidesharingScreenState extends State<RidesharingScreen> {
                                                 var sms = Uri.parse("sms:+917560911122");
                                                 launchUrl(sms);
                                               },
-                                              icon: Icon(Icons.message,
+                                              icon: const Icon(Icons.message,
                                                 color: Colors.black,size: 15,),
                                             ),
                                           ),

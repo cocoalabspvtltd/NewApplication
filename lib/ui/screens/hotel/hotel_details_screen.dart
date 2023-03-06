@@ -32,45 +32,43 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image.asset("assets/images/HoteleExm.png"),
-                SizedBox(height: 10,),
-                Text("HotelName",style: TextStyle(fontSize: 30),),
-                SizedBox(height: 10,),
-                Text("Hotel Address",style: TextStyle(fontSize: 25),),
-                SizedBox(height: 10,),
-                Text("Facilities",style: TextStyle(fontSize: 25),),
-                SizedBox(height: 8,),
-                Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Facilities1"),
-                      Text("Facilities2"),
-                      Text("Facilities3"),
-                      Text("Facilities4")
-                    ],
-                  ),
+                const SizedBox(height: 10,),
+                const Text("HotelName",style: TextStyle(fontSize: 30),),
+                const SizedBox(height: 10,),
+                const Text("Hotel Address",style: TextStyle(fontSize: 25),),
+                const SizedBox(height: 10,),
+                const Text("Facilities",style: TextStyle(fontSize: 25),),
+                const SizedBox(height: 8,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text("Facilities1"),
+                    Text("Facilities2"),
+                    Text("Facilities3"),
+                    Text("Facilities4")
+                  ],
                 ),
-                SizedBox(height: 15,),
-                Text("Budget",style: TextStyle(fontSize: 20),),
-                SizedBox(height: 8,),
+                const SizedBox(height: 15,),
+                const Text("Budget",style: TextStyle(fontSize: 20),),
+                const SizedBox(height: 8,),
                 Row(
                 children: [
                   Text("2500",style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold,fontSize: 16),),
-                  SizedBox(width: 5,),
-                  Text("Per day/night",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
+                  const SizedBox(width: 5,),
+                  const Text("Per day/night",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
                 ],
                 ),
-                SizedBox(height: 15,),
-                Text("Today's Rate",style: TextStyle(fontSize: 20),),
-                SizedBox(height: 8,),
+                const SizedBox(height: 15,),
+                const Text("Today's Rate",style: TextStyle(fontSize: 20),),
+                const SizedBox(height: 8,),
                 Row(
                   children: [
                     Text("1500",style: TextStyle(color: primaryColor,fontWeight: FontWeight.bold,fontSize: 16),),
-                    SizedBox(width: 5,),
-                    Text("Per day/night",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
+                    const SizedBox(width: 5,),
+                    const Text("Per day/night",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),)
                   ],
                 ),
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -87,7 +85,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                           color: Colors.black, size: 17,),
                       ),
                     ),
-                    SizedBox(width: 7,),
+                    const SizedBox(width: 7,),
                     CircleAvatar(
                       radius: 18,
                       backgroundColor : secondaryColor,
@@ -97,7 +95,7 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
                               "sms:+917560911122");
                           launchUrl(sms);
                         },
-                        icon: Icon(Icons.message,
+                        icon: const Icon(Icons.message,
                           color: Colors.black, size: 17,),
                       ),
                     ),
@@ -108,43 +106,41 @@ class _HotelDetailsScreenState extends State<HotelDetailsScreen> {
           ),
         ),
       ),
-      bottomSheet: Container(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height *0.08,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-               Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Column(
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("1500",style: TextStyle(fontSize: 18,color: primaryColor,fontWeight: FontWeight.bold),),
-                     Text("Per day/night",style:TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)
-                   ],
-                 ),
+      bottomSheet: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height *0.08,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+             Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Text("1500",style: TextStyle(fontSize: 18,color: primaryColor,fontWeight: FontWeight.bold),),
+                   const Text("Per day/night",style:TextStyle(fontSize: 18,fontWeight: FontWeight.bold),)
+                 ],
                ),
-              Spacer(),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.3,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+             ),
+            const Spacer(),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.3,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    onPressed: () {
-                    },
-                    child: Text(
-                      "Book Now",
-                      style: TextStyle(fontSize: 16, color: Colors.white),
-                    )),
-              ),
-              SizedBox(width: 10,)
-            ],
-          ),
+                  ),
+                  onPressed: () {
+                  },
+                  child: const Text(
+                    "Book Now",
+                    style: TextStyle(fontSize: 16, color: Colors.white),
+                  )),
+            ),
+            const SizedBox(width: 10,)
+          ],
         ),
       ),
     );

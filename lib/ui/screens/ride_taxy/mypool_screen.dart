@@ -33,20 +33,20 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ListView.separated(
                   separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
+                    return const SizedBox(
                       height: 4,
                     );
                   },
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: 5,
                   itemBuilder: (BuildContext context, int i) {
                     return Card(
                         elevation: 1,
-                        shape: RoundedRectangleBorder(
+                        shape: const RoundedRectangleBorder(
                             borderRadius:
                             BorderRadius.all(Radius.circular(7))),
                         child: Padding(
@@ -55,10 +55,10 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                             isThreeLine: true,
                             title: Row(
                               children: [
-                                Text('Name :  ',
+                                const Text('Name :  ',
                                     style: TextStyle(fontSize: 18)),
-                                Spacer(),
-                                IconButton(onPressed: (){}, icon: Icon(Icons.close,size: 20,color: Colors.black,)),
+                                const Spacer(),
+                                IconButton(onPressed: (){}, icon: const Icon(Icons.close,size: 20,color: Colors.black,)),
                               ],
                             ),
                             subtitle: Column(
@@ -79,13 +79,12 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                                         onPressed: () {
                                           Uri phoneno = Uri.parse('tel:+917560911122');
                                           launchUrl(phoneno);
-                                          print("jlk");
                                         },
                                         icon: const Icon(Icons.call,
                                           color: Colors.black,size: 15,),
                                       ),
                                     ),
-                                    SizedBox(width: 7,),
+                                    const SizedBox(width: 7,),
                                     CircleAvatar(
                                       radius: 16,
                                       backgroundColor: secondaryColor,
@@ -94,7 +93,7 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
                                           var sms = Uri.parse("sms:+917560911122");
                                           launchUrl(sms);
                                         },
-                                        icon: Icon(Icons.message,
+                                        icon: const Icon(Icons.message,
                                           color: Colors.black,size: 15,),
                                       ),
                                     ),
@@ -117,7 +116,7 @@ class _MyPoolScreenState extends State<MyPoolScreen> {
         onPressed: () {
           Get.to(() => const DriversListScreen());
         },
-        label: Text('Add Driver'),
+        label: const Text('Add Driver'),
       )
     );
   }

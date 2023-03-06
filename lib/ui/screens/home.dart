@@ -64,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             padding: const EdgeInsets.only(top: 30),
             child: SizedBox(
               height: 50,
+              width: 200,
               child: AppTextBox(
                 textFieldControl: _searchcontroller,
                 hintText: 'Search location',
@@ -87,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         InkWell(
                           onTap: (){
-                            Get.to(() =>  StartRideScreen());
+                            Get.to(() =>  const StartRideScreen());
                           },
                           child: Container(
                             height: 100,
@@ -127,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         InkWell(
                           onTap: (){
-                            Get.to(() =>  StartHotelScreen());
+                            Get.to(() =>  const StartHotelScreen());
                           },
                           child: Container(
                             height: 100,

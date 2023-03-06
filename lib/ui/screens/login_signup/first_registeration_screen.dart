@@ -31,7 +31,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   int isrestaurent = 0;
   final AuthRepositoryUser _authrepo = AuthRepositoryUser();
   final ImagePicker _picker = ImagePicker();
-  final TextFieldControl _license_number = TextFieldControl();
+  final TextFieldControl _licensenumber = TextFieldControl();
   final TextFieldControl _vehicleexpdate = TextFieldControl();
   final TextFieldControl _hotelname = TextFieldControl();
   final TextFieldControl _hoteladdress = TextFieldControl();
@@ -45,12 +45,10 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       bottomSheet: Container(color: primaryColor,
         child: SizedBox(
           width: 400,
           height: 40,
-
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -228,7 +226,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: AppTextBox(
-              textFieldControl: _license_number,
+              textFieldControl: _licensenumber,
               hintText: 'Enter license number',
               keyboardType: TextInputType.text,
             ),
@@ -397,7 +395,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
             height: 35,
             child: ElevatedButton(
                 onPressed: () {
-                  if (_license_number.controller.text != null &&
+                  if (_licensenumber.controller.text != null &&
                       _licenseimage != null &&
                       _vehicleexpdate != null &&
                       _permitimage != null) {
@@ -409,7 +407,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         _hotelname.controller.text,
                         _hotelphoneno.controller.text,
                         _hoteladdress.controller.text,
-                        _license_number.controller.text,
+                        _licensenumber.controller.text,
                         "_licenseimage as String",_vehicleexpdate.controller.text,_permitimage!,typevalue,isDriver,ishotel,isrestaurent);
                   //  Fluttertoast.showToast(msg: "Successfully Added");
 
@@ -534,7 +532,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "luxury";
-                          debugPrint("->${hoteltypevalue}");
+                          debugPrint("->$hoteltypevalue");
                         });
                       },
                       activeColor: primaryColor,
@@ -554,7 +552,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "premium";
-                          debugPrint("->${hoteltypevalue}");
+                          debugPrint("->$hoteltypevalue");
                         });
                       },
                       activeColor: primaryColor,
@@ -578,7 +576,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "midscale";
-                          debugPrint("->${hoteltypevalue}");
+                          debugPrint("->$hoteltypevalue");
                         });
                       },
                       activeColor: primaryColor,
@@ -598,7 +596,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         setState(() {
                           hoteltype = value.toString();
                           hoteltypevalue = "basic";
-                          debugPrint("->${hoteltypevalue}");
+                          debugPrint("->$hoteltypevalue");
                         });
                       },
                       activeColor: primaryColor,
@@ -634,7 +632,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         _hotelname.controller.text,
                         _hotelphoneno.controller.text,
                         _hoteladdress.controller.text,
-                        _license_number.controller.text,
+                        _licensenumber.controller.text,
                         "_licenseimage as String",_vehicleexpdate.controller.text,"_permitimage as String",typevalue,isDriver,ishotel,isrestaurent);
                   } else {
                     Fluttertoast.showToast(msg: "Please fill the fields");
@@ -763,7 +761,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     setState(() {
                       type = value.toString();
                       typevalue = "veg";
-                      print("->${typevalue}");
+                      debugPrint("->$typevalue");
                     });
                   },
                   activeColor: primaryColor,
@@ -785,7 +783,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     setState(() {
                       type = value.toString();
                       typevalue = "non-veg";
-                      debugPrint("->${typevalue}");
+                      debugPrint("->$typevalue");
                     });
                   },
                   activeColor: primaryColor,
@@ -807,7 +805,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                     setState(() {
                       type = value.toString();
                       typevalue = "veg/non-veg";
-                      print("->${typevalue}");
+                      debugPrint("->$typevalue");
                     });
                   },
                   activeColor: primaryColor,
@@ -841,7 +839,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                         _hotelname.controller.text,
                         _hotelphoneno.controller.text,
                         _hoteladdress.controller.text,
-                        _license_number.controller.text,
+                        _licensenumber.controller.text,
                         "_licenseimage as String",_vehicleexpdate.controller.text,_permitimage!,typevalue,isDriver,ishotel,isrestaurent);
                   } else {
                     Fluttertoast.showToast(msg: "Please fill the fields");
@@ -886,7 +884,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
         backgroundColor: Colors.white,
         context: context,
         builder: (context) {
-          return Container(
+          return SizedBox(
             height: 100,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
@@ -907,7 +905,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           iconSize: 30,
                         ),
                       ),
-                      Text("Camera"),
+                      const Text("Camera"),
                     ],
                   ),
                   const SizedBox(width: 20),
@@ -920,7 +918,7 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           onPressed: () {
                             _imagefromGalleryliscence();
                           },
-                          icon: Icon(Icons.photo),
+                          icon: const Icon(Icons.photo),
                           color: Colors.white,
                           iconSize: 30,
                         ),
@@ -939,7 +937,6 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
       _permitimage = image;
-      print("image->${_permitimage}");
     });
   }
 
@@ -973,15 +970,15 @@ class _RegisterationScreenState extends State<RegisterationScreen> {
                           onPressed: () {
                             _imagefromComerapermit();
                           },
-                          icon: Icon(Icons.camera_alt_rounded,
+                          icon: const Icon(Icons.camera_alt_rounded,
                               color: Colors.white),
                           iconSize: 30,
                         ),
                       ),
-                      Text("Camera"),
+                      const Text("Camera"),
                     ],
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Column(
                     children: [
                       CircleAvatar(

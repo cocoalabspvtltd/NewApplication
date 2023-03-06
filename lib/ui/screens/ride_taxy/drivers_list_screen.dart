@@ -80,7 +80,7 @@ class _DriversListScreenState extends State<DriversListScreen> {
                                           color: Colors.black, size: 15,),
                                       ),
                                     ),
-                                    SizedBox(width: 7,),
+                                    const SizedBox(width: 7,),
                                     CircleAvatar(
                                       radius: 16,
                                       backgroundColor: selectedIndex == index
@@ -92,7 +92,7 @@ class _DriversListScreenState extends State<DriversListScreen> {
                                               "sms:+917560911122");
                                           launchUrl(sms);
                                         },
-                                        icon: Icon(Icons.message,
+                                        icon: const Icon(Icons.message,
                                           color: Colors.black, size: 15,),
                                       ),
                                     ),
@@ -103,7 +103,7 @@ class _DriversListScreenState extends State<DriversListScreen> {
                                       color: selectedIndex == index
                                           ? Colors.white
                                           : Colors.black,)),
-                                SizedBox(height: 5,),
+                                const SizedBox(height: 5,),
                               ],
                             ),
                             subtitle: Column(
@@ -116,7 +116,7 @@ class _DriversListScreenState extends State<DriversListScreen> {
                                       ? Colors.white
                                       : Colors.black,),
                                 ),
-                                SizedBox(height: 5,),
+                                const SizedBox(height: 5,),
                                 Text(
                                     'Type :   ',
                                     style: TextStyle(fontSize: 18,
@@ -160,24 +160,24 @@ class _DriversListScreenState extends State<DriversListScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               Row(
-                children: [
+                children: const [
                   Text("Name "),
                   Spacer(),
                   Text("V-Number")
                 ],
               ),
-              SizedBox(height: 8,),
+              const SizedBox(height: 8,),
               Row(
-                children: [
+                children: const [
                   Text("Distance "),
                   Spacer(),
                   Text("Type")
                 ],
               ),
-              SizedBox(height: 8,),
-              Divider(
+              const SizedBox(height: 8,),
+              const Divider(
                 thickness: 0.5,color: Colors.black,
               ),
               SizedBox(
@@ -190,7 +190,7 @@ class _DriversListScreenState extends State<DriversListScreen> {
                     ),
                     onPressed: () {
                     },
-                    child: Text(
+                    child: const Text(
                       "Cancel the ride",
                       style: TextStyle(fontSize: 16, color: Colors.white),
                     )),
